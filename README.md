@@ -15,7 +15,9 @@ We hope to help make informed choices on what to eat in NUS quick and easy by co
 # 1.4. User Stories
 
 Must have: 3/3
+
 Should have: 2/3
+
 Good to have: 1/3
 
 Visitor here is a general term referring to both anonymous and registered users visiting the site
@@ -27,15 +29,12 @@ Priority|As a...| I want to be able to... | So that I can...
 3/3| Visitor | generate random suggestions for food based on presets such as menu, prices, distance| have something help me decide what to eat
 3/3| Visitor | see reviews and ratings on stalls and food items | make informed decisions
 3/3| User | Login securely | Keep my account safe
-
 2/3| Registered user | post reviews and ratings on stalls and food items | provide feedback about the food
 2/3| Registered user | generate random suggestions based on my eating history | have something help me decide what to eat efficiently
 2/3| Administrator | filter and remove abusive comments | prevent abuse of the application
-
 1/3| Registered user | contribute to the database of foodstalls | help keep information up to date for other fellow users
 1/3| Administrator | Vet and approve contributions made by fellow users | to prevent abuse of database
 1/3| Administrator | Receive notification to approve contributions | approve contributions ASAP
-
 1/3| Visitor | find the shortest path to food location | find food quickly
 1/3| Visitor | check the real time crowd level of a location | to make informed decisions
 
@@ -64,6 +63,8 @@ Our web-application frontend is made up of these main components:
 ## 2.2. Features
 
 # 3. Tech Stack
+
+We aim to develop a mobile-friendly web app by adhering to progressive web application guidelines.
 
 ## 3.1 Frontend Development:
 
