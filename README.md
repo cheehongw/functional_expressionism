@@ -86,7 +86,7 @@ Our web-application will have these features:
 The program flow can also be found [here](https://drive.google.com/file/d/19Cf_m0eIl2YkEhKYLYIGT7dw5wozCN8d/view?usp=sharing).
 
 ## 3.2 Wireframes
-We have designed the basic "skeleton" layout for the mobile version of our web-app. You can view the current progress [here](https://drive.google.com/file/d/1g7KbE4fUiYBXTiRFIQADfK_AV_RoDXwb/view?usp=sharing).
+We have designed the basic "skeleton" layout for the mobile version of our web-app. You can view the current progress [pdf version](https://drive.google.com/file/d/1g7KbE4fUiYBXTiRFIQADfK_AV_RoDXwb/view?usp=sharing) or [figma version](https://www.figma.com/file/MrmENGTj2xFWo4GG30M3On/Front-end-Web-App?node-id=0%3A1)
 
 # 4. Tech Stack
 
