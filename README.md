@@ -83,10 +83,10 @@ Project log is in this [link](https://docs.google.com/document/d/1mXaDSBF8R6uzsf
 
 ## 3.2 Program Flow
 <img src="https://drive.google.com/uc?id=1K0m_xE4xI81O7cN0zjIlW-WERe25KPI6" alt="Program Flow image">
-The program flow can also be found [here](https://drive.google.com/file/d/19Cf_m0eIl2YkEhKYLYIGT7dw5wozCN8d/view?usp=sharing)
+The program flow can also be found [here](https://drive.google.com/file/d/19Cf_m0eIl2YkEhKYLYIGT7dw5wozCN8d/view?usp=sharing).
 
 ## 3.3 Wireframes
-We have designed the basic "skeleton" layout for the mobile version of our web-app. You can view the current progress [here].(https://drive.google.com/file/d/1g7KbE4fUiYBXTiRFIQADfK_AV_RoDXwb/view?usp=sharing)
+We have designed the basic "skeleton" layout for the mobile version of our web-app. You can view the current progress [here](https://drive.google.com/file/d/1g7KbE4fUiYBXTiRFIQADfK_AV_RoDXwb/view?usp=sharing).
 # 4. Tech Stack
 
 We aim to develop a mobile-friendly web app by adhering to progressive web application guidelines.
