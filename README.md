@@ -74,11 +74,22 @@ Our web-application will have these features:
 * Give recommendations on what to eat every day.
 * Give the distance from the user to the stall to the stall that serve the dish they are considering.
 
-# 3. Tech Stack
+# 3. Illustrations
+
+## 3.1 Project Log
+Project log is in this [link](https://docs.google.com/document/d/1mXaDSBF8R6uzsfWHx4KxFPMLqBGlgUpy06-42EEMWZ8/edit)
+(markdown version coming soon..)
+
+## 3.2 Program Flow
+The program flow is [here](https://drive.google.com/file/d/19Cf_m0eIl2YkEhKYLYIGT7dw5wozCN8d/view?usp=sharing)
+
+## 3.3 Wireframes
+We have designed the basic "skeleton" layout for the mobile version of our web-app. You can view the current progress [here].(https://drive.google.com/file/d/1g7KbE4fUiYBXTiRFIQADfK_AV_RoDXwb/view?usp=sharing)
+# 4. Tech Stack
 
 We aim to develop a mobile-friendly web app by adhering to progressive web application guidelines.
 
-## 3.1 Frontend Development:
+## 4.1 Frontend Development:
 
 ### ReactJS
 
@@ -88,7 +99,7 @@ We decided to use ReactJS because ReactJS is lightweight, and flexible.
 
 We decided to use Firebase Authentication as it is secure and easy to deploy.
 
-## 3.2 Backend Development:
+## 4.2 Backend Development:
 
 We are intending to use ExpressJS/Firebase to handle algorithms for recommendations, handling dish image queries and distance.  
 
