@@ -55,12 +55,24 @@ Our web-application frontend is made up of these main components:
 	* Display Ratings, comments and description of the stall
 	* Scroll down to view menu of the stall
 
+* A "I am feeling lucky page" - recommend the dish for the user. Users can:
+	* Swipe right/ Click on the right arrow to move to the next recommendation.
+	* Swipe left/ Click on the left arrow to move back to the previous recommendation.
+	* Double tap/click to confirm their choice.
+
 * Login/Signup page
 * User Dashboard
 	* Shows stall visit history
 	* Show comments and reviews made by user in timeline
 
+
 ## 2.2. Features
+
+Our web-application will have these features:
+
+* Display the list of dishes in every food stalls in NUS.
+* Give recommendations on what to eat every day.
+* Give the distance from the user to the stall to the stall that serve the dish they are considering.
 
 # 3. Tech Stack
 
@@ -78,5 +90,6 @@ We decided to use Firebase Authentication as it is secure and easy to deploy.
 
 ## 3.2 Backend Development:
 
+We are intending to use ExpressJS/Firebase to handle algorithms for recommendations, handling dish image queries and distance.  
 
 
