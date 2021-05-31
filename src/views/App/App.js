@@ -1,25 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
-import {Header} from '../../components/Header.js';
+import Header  from '../../components/Header.js';
+import ClickableCard from '../../components/ClickableCard.js';
 
-export function App() {
+export default function App() {
   return (
-    <div className="App">
-      <Header> Test </Header>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Header URL="/"> TinFood </Header>
+      <ClickableCard URL="/locations">Locations</ClickableCard>
+      <ClickableCard URL='/suggestions'>I'm Feeling Lucky</ClickableCard>
     </div>
   );
 }

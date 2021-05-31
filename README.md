@@ -29,6 +29,7 @@ Priority|As a...| I want to be able to... | So that I can...
 3/3| Visitor | generate random suggestions for food based on presets such as menu, prices, distance| have something help me decide what to eat
 3/3| Visitor | see reviews and ratings on stalls and food items | make informed decisions
 3/3| User | Login securely | Keep my account safe
+2/3| Registered User | reset/change my username/password | have control over my account.
 2/3| Registered user | post reviews and ratings on stalls and food items | provide feedback about the food
 2/3| Registered user | generate random suggestions based on my eating history | have something help me decide what to eat efficiently
 2/3| Administrator | filter and remove abusive comments | prevent abuse of the application
@@ -78,5 +79,7 @@ We decided to use Firebase Authentication as it is secure and easy to deploy.
 
 ## 3.2 Backend Development:
 
+We decided to use ExpressJS as it is a simple, unopinionated web framework to set up an API endpoint for our database.
 
-
+# 4. Program Flow
+<img src="https://drive.google.com/uc?id=1K0m_xE4xI81O7cN0zjIlW-WERe25KPI6" alt="Program Flow image">
