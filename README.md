@@ -12,7 +12,10 @@ Also, why is there not a record of the various menus somewhere to help us decide
 ## 1.3. Aim 
 We hope to help make informed choices on what to eat in NUS quick and easy by consolidating all the information into an easy to use app.
 
-## 1.4. User Stories
+## 1.4 Project scope
+A platform for NUS Students to look for dishes in NUS stalls and getting recommendations for food in NUS.
+
+## 1.5. User Stories
 
 Must have: 3/3
 
