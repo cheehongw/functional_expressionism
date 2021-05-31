@@ -77,16 +77,14 @@ Our web-application will have these features:
 
 # 3. Illustrations
 
-## 3.1 Project Log
-Project log is in this [link](https://docs.google.com/document/d/1mXaDSBF8R6uzsfWHx4KxFPMLqBGlgUpy06-42EEMWZ8/edit)
-(markdown version coming soon..)
+## 3.1 Program Flow
+![Program Flow Image](https://drive.google.com/uc?id=1K0m_xE4xI81O7cN0zjIlW-WERe25KPI6 "Program Flow Diagram")
 
-## 3.2 Program Flow
-<img src="https://drive.google.com/uc?id=1K0m_xE4xI81O7cN0zjIlW-WERe25KPI6" alt="Program Flow image">
 The program flow can also be found [here](https://drive.google.com/file/d/19Cf_m0eIl2YkEhKYLYIGT7dw5wozCN8d/view?usp=sharing).
 
-## 3.3 Wireframes
+## 3.2 Wireframes
 We have designed the basic "skeleton" layout for the mobile version of our web-app. You can view the current progress [here](https://drive.google.com/file/d/1g7KbE4fUiYBXTiRFIQADfK_AV_RoDXwb/view?usp=sharing).
+
 # 4. Tech Stack
 
 We aim to develop a mobile-friendly web app by adhering to progressive web application guidelines.
@@ -104,3 +102,25 @@ We decided to use Firebase Authentication as it is secure and easy to deploy.
 ## 4.2 Backend Development:
 
 We are intending to use ExpressJS/Firebase to act as an API endpoint, to handle queries to our database and handle algorithms for recommendations.
+
+# 5. Project Log
+
+## Milestone 1
+
+No.|Task|Date|Chee Hong (hours)|Vinh (hours)|Remarks
+---|----|----|-----------------|------------|-------
+1.|Project preparation|See remarks|30|30|Chee Hong learnt the fundamentals of ReactJS, ExpressJS, Git workflows, CSS styling and RESTful API (15 May - 28 May) <br><br> Vinh learnt the fundamentals of ReactJS, Firebase, and Github (15 May - 28 May)
+2.|Preparing poster and poster|Due on 17 May|2|4|[Poster](https://drive.google.com/file/d/1YqJJ6lPAt1wrTVPvk4oszLKR9W5SxQXq/view?usp=sharing) designed on Canva by Vinh.<br><br>[Video](https://drive.google.com/file/d/17ph27rG90NvbxMHe89GDX-9MORN8c2My/view?usp=sharing) and script by Chee Hong
+3.|Team meeting #1|11 May|2|2|General Ideation and discussion
+4.|Meeting w Abishek(advisor) <br>& Team meeting #2|17 May|3|3|Further ideation and discussion on frontend and backend techstack<br><br>Allocation of work to team members.
+5.|Team Meeting #3|22 May|2|2|Solidify the inner workings (back-end wise) and user stories of the project
+6.|Designing wireframes on Figma|26-30 May|20|14|Learning the fundamentals of Figma. Choosing React front-end UI framework (Material UI).<br><br>Ideation of wireframes for the front-end look for the web app. <br><br> Designing component wireframes by Chee Hong <br><br>You can view the current wireframes [here](https://drive.google.com/file/d/1g7KbE4fUiYBXTiRFIQADfK_AV_RoDXwb/view?usp=sharing).
+7.|Development of Authentication pages (Sign in and sign up)|26-30 May|0|12|Designing the front-end sign-in and sign up page, configuring Firebase to handle authentication.
+8.|Implementing frontend routing for React web-app|29-30 May|6|0|Initialize git repo, adding support for multi page application.
+9.|Creating program flow diagram & project log|30 May|3|1|Creating the program and user flow diagram and project log to keep track of the current progress.
+Hours spent||Subtotal|68|68|Total: 136hrs
+
+
+Alternatively, you can view the project log [here](https://docs.google.com/document/d/1mXaDSBF8R6uzsfWHx4KxFPMLqBGlgUpy06-42EEMWZ8/edit)
+
+
