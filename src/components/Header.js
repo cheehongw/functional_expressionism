@@ -13,15 +13,21 @@ export default function Header(props) {
 
 	const classes = useStyles();
 	const history = useHistory();
-    const navigateTo = () => history.push('/');
+	const navigateTo = () => history.push('/');
 
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar variant="dense">
-					<Typography onClick={navigateTo} variant="h6" color="inherit" className={classes.title}>
-						{props.children}
-					</Typography>
+					<div className={classes.container} >
+						<img 
+						className={classes.img} //styling  
+						onClick={navigateTo} //onClick functionality
+						src={process.env.PUBLIC_URL + '/logo192.png'} alt="logo" />
+						<Typography onClick={navigateTo} variant="h6" color="inherit" className={classes.title}>
+							TinFood
+						</Typography>
+					</div>
 					<LoginMenuButton color="inherit">Login</LoginMenuButton>
 				</Toolbar>
 			</AppBar>
@@ -35,7 +41,22 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 	},
 
-	title: {
+	container: {
+		display: "flex",
+		columnGap: "0.5em",
+		position: "relative",
+   	 	alignItems: "center",
 		flexGrow: 1,
+		maxHeight: "48px",
+		paddingLeft: "24px",
+    	paddingRight: "24px",
+	},
+
+	img: {
+		maxHeight: "inherit",
+	},
+
+	title: {
+		maxHeight: "inherit",
 	},
 }));
