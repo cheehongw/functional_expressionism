@@ -28,7 +28,7 @@ export default function Header(props) {
 							TinFood
 						</Typography>
 					</div>
-					<LoginMenuButton color="inherit">Login</LoginMenuButton>
+					<LoginMenuButton color="inherit"></LoginMenuButton>
 				</Toolbar>
 			</AppBar>
 		</div>
