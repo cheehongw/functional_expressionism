@@ -1,94 +1,35 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
-import firebase from "firebase/app";
-import "firebase/auth";
+import React, { useEffect, useState } from "react";
+import authHandling from "./Firebase";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBX8sxHNB0ZarROH0yqReY4lFjdpnBTF-U",
-  authDomain: "tinfood-b800e.firebaseapp.com",
-  projectId: "tinfood-b800e",
-  storageBucket: "tinfood-b800e.appspot.com",
-  messagingSenderId: "782350964147",
-  appId: "1:782350964147:web:ef9fdf4058d48ea6a827c6",
-  measurementId: "G-RP727BDSDR",
-};
+export const AuthContext = React.createContext();
 
-firebase.initializeApp(firebaseConfig);
-
-const authContext = createContext();
-
-export function ProvideAuth({ children }) {
-  const auth = useProvideAuth();
-  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
-}
-
-export const useAuth = () => {
-  return useContext(authContext);
-};
-
-function useProvideAuth() {
-  const [user, setUser] = useState(null);
-
-  const signin = (email, password) => {
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser(response.user);
-        return response.user;
-      });
-  };
-  const signup = (email, password) => {
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        setUser(response.user);
-        return response.user;
-      });
-  };
-  const signout = () => {
-    return firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        setUser(false);
-      });
-  };
-  const sendPasswordResetEmail = (email) => {
-    return firebase
-      .auth()
-      .sendPasswordResetEmail(email)
-      .then(() => {
-        return true;
-      });
-  };
-  const confirmPasswordReset = (code, password) => {
-    return firebase
-      .auth()
-      .confirmPasswordReset(code, password)
-      .then(() => {
-        return true;
-      });
-  };
-
+export const AuthProvider = ({ children }) => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [pending, setPending] = useState(true);
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        setUser(false);
-      }
+    authHandling.auth().onAuthStateChanged((user) => {
+      setCurrentUser(user);
+      setPending(false);
     });
-
-    return () => unsubscribe();
   }, []);
 
-  return {
-    user,
-    signin,
-    signup,
-    signout,
-    sendPasswordResetEmail,
-    confirmPasswordReset,
-  };
-}
+  if (pending) {
+    return (
+      // Loading screen (to be done later)
+      <div>
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        currentUser,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};

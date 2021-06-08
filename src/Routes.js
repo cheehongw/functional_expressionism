@@ -1,20 +1,43 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import App from "./views/App/App.js";
-import LocationList from "./views/LocationList.js"
-import Stalls from "./views/Stalls.js"
-import NotFound from "./views/NotFound"
+import LocationList from "./views/LocationList.js";
+import Stalls from "./views/Stalls.js";
+import NotFound from "./views/NotFound";
+import { CssBaseline } from "@material-ui/core";
+import { AuthProvider } from "./auth/use-auth.js";
+import PrivateRoute from "./auth/PrivateRoute";
+import SignIn from "./auth/SignIn.js";
+import SignUp from "./auth/SignUp.js";
 
 const Routes = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route exact path="/locations" component={LocationList} />
-        <Route exact path="/stalls" component={Stalls} />
-        <Route component={NotFound} />
-      </Switch>
-    </BrowserRouter>
+    <CssBaseline>
+      <AuthProvider>
+        <BrowserRouter>
+          <Switch>
+            <PrivateRoute exact path="/">
+              <App />
+            </PrivateRoute>
+            <Route exact path="/locations">
+              <LocationList />
+            </Route>
+            <Route exact path="/stalls">
+              <Stalls />
+            </Route>
+            <Route exact path="/signin">
+              <SignIn />
+            </Route>
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
+            <Route>
+              <NotFound />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </AuthProvider>
+    </CssBaseline>
   );
 };
 
