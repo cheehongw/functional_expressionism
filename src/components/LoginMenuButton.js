@@ -4,7 +4,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import { AuthContext } from "../auth/use-auth";
-import authHandling from "../auth/Firebase";
+import authHandling from "../auth/AuthHandler";
 
 export default function LoginMenuButton(props) {
   //replace default false value with custom isLoggedIn hook to fetch logged in status
