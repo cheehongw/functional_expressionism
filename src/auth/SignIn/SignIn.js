@@ -33,9 +33,11 @@ function Login({ history }) {
       const { email, password } = event.target.elements;
       try {
         if (persist) {
-          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+          await firebase
+            .auth()
+            .setPersistence(firebase.auth.Auth.Persistence.LOCAL);
         } else {
-          firebase
+          await firebase
             .auth()
             .setPersistence(firebase.auth.Auth.Persistence.SESSION);
         }
