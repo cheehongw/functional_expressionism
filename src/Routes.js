@@ -7,8 +7,8 @@ import NotFound from "./views/NotFound";
 import { CssBaseline } from "@material-ui/core";
 import { AuthProvider } from "./auth/use-auth.js";
 import PrivateRoute from "./auth/PrivateRoute";
-import SignIn from "./auth/SignIn.js";
-import SignUp from "./auth/SignUp.js";
+import SignIn from "./auth/SignIn/SignIn.js";
+import SignUp from "./auth/SignUp/SignUp.js";
 
 const Routes = () => {
   return (
