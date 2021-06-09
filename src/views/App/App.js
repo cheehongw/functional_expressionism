@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header.js';
 import ClickableCard from '../../components/ClickableCard.js';
-import { Container, Typography } from '@material-ui/core';
+
 import styles from './App.module.css';
 
 
@@ -12,9 +12,9 @@ export default function App() {
       <Header className={styles.appHeader} URL="/" />
 
       <div className={styles.title} disableGutters={true}>
-        <Typography className={styles.text} variant='h1'>
+        <h1 className={styles.text}>
           TinFood
-        </Typography>
+        </h1>
       </div>
 
 
