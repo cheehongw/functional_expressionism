@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { withRouter, Redirect } from "react-router";
 import authHandling from "../AuthHandler.js";
 import { AuthContext } from "../use-auth.js";
@@ -25,12 +25,20 @@ function GoogleIcon(props) {
 
 function Login({ history }) {
   const classes = useStyles();
+  const [persist, setPersist] = useState(false);
 
   const handleLogin = useCallback(
     async (event) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
+        if (persist) {
+          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+        } else {
+          firebase
+            .auth()
+            .setPersistence(firebase.auth.Auth.Persistence.SESSION);
+        }
         await authHandling
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
@@ -39,10 +47,11 @@ function Login({ history }) {
         alert(error.message);
       }
     },
-    [history]
+    [persist, history]
   );
 
   const handleGoogleSignIn = useCallback(async () => {
+    await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().useDeviceLanguage();
     try {
@@ -106,6 +115,9 @@ function Login({ history }) {
           <FormControlLabel
             control={<Checkbox value="remember" color="secondary" />}
             label="Remember me"
+            onClick={() => {
+              setPersist(!persist);
+            }}
           />
           <Button
             className={classes.email}
