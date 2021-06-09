@@ -1,0 +1,23 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100vw;
+  height:35vh;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0d/National_University_of_Singapore%2C_panorama%2C_Nov_06.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.text {
+  font-size: 4rem;
+}
