@@ -19,21 +19,11 @@ const Routes = () => {
             <PrivateRoute exact path="/">
               <App />
             </PrivateRoute>
-            <Route exact path="/locations">
-              <LocationList />
-            </Route>
-            <Route exact path="/stalls">
-              <Stalls />
-            </Route>
-            <Route exact path="/signin">
-              <SignIn />
-            </Route>
-            <Route exact path="/signup">
-              <SignUp />
-            </Route>
-            <Route>
-              <NotFound />
-            </Route>
+            <Route exact path="/locations" component={ LocationList } />
+            <Route exact path="/stalls" component={ Stalls }/>
+            <Route exact path="/signin" component={ SignIn } />
+            <Route exact path="/signup" component={ SignUp } />
+            <Route component={ NotFound } />
           </Switch>
         </BrowserRouter>
       </AuthProvider>
