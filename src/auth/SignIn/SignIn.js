@@ -28,6 +28,7 @@ function Login({ history }) {
   const [persist, setPersist] = useState(false);
   const [error, setError] = useState(null);
   const { currentUser } = useContext(AuthContext);
+  const [tempUser, setTempUser] = useState(null);
 
   const handleLogin = useCallback(
     async (event) => {
@@ -45,19 +46,21 @@ function Login({ history }) {
         }
         await authHandling
           .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
-        if (currentUser) {
-          if (currentUser.emailVerified) {
+          .signInWithEmailAndPassword(email.value, password.value)
+          .then((response) => setTempUser(response.user));
+        if (tempUser) {
+          if (tempUser.emailVerified) {
             history.push("/");
           }
         } else {
-          setError("This email is not verified");
+          authHandling.auth().signOut();
+          setError("The user is not verified");
         }
       } catch (error) {
         setError(error.message);
       }
     },
-    [currentUser, persist, history]
+    [tempUser, persist, history]
   );
 
   const handleGoogleSignIn = useCallback(async () => {
