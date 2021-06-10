@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     authHandling.auth().onAuthStateChanged((user) => {
-      console.log(user);
       if (user != null) {
         if (user.emailVerified) {
           setCurrentUser(user);
