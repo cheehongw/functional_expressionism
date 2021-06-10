@@ -1,3 +1,5 @@
+// Route for conditional rendering
+
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "./use-auth";

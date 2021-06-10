@@ -9,6 +9,7 @@ import { AuthProvider } from "./auth/use-auth.js";
 import PrivateRoute from "./auth/PrivateRoute";
 import SignIn from "./auth/SignIn/SignIn.js";
 import SignUp from "./auth/SignUp/SignUp.js";
+import SignUpDone from "./auth/SignUpDone/SignUpDone.js";
 
 const Routes = () => {
   return (
@@ -30,6 +31,9 @@ const Routes = () => {
             </Route>
             <Route exact path="/signup">
               <SignUp />
+            </Route>
+            <Route exact path="/done">
+              <SignUpDone />
             </Route>
             <Route>
               <NotFound />
