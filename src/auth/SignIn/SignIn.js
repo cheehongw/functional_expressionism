@@ -26,6 +26,9 @@ function GoogleIcon(props) {
 function Login({ history }) {
   const classes = useStyles();
   const [persist, setPersist] = useState(false);
+  const [error, setError] = useState(null);
+  const { currentUser } = useContext(AuthContext);
+  const [tempUser, setTempUser] = useState(null);
 
   const handleLogin = useCallback(
     async (event) => {
@@ -43,13 +46,21 @@ function Login({ history }) {
         }
         await authHandling
           .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+          .signInWithEmailAndPassword(email.value, password.value)
+          .then((response) => setTempUser(response.user));
+        if (tempUser) {
+          if (tempUser.emailVerified) {
+            history.push("/");
+          }
+        } else {
+          authHandling.auth().signOut();
+          setError("The user is not verified");
+        }
       } catch (error) {
-        alert(error.message);
+        setError(error.message);
       }
     },
-    [persist, history]
+    [tempUser, persist, history]
   );
 
   const handleGoogleSignIn = useCallback(async () => {
@@ -64,7 +75,6 @@ function Login({ history }) {
     }
   }, [history]);
 
-  const { currentUser } = useContext(AuthContext);
   if (currentUser) {
     return <Redirect to="/" />;
   }
@@ -78,12 +88,14 @@ function Login({ history }) {
           alt="Not available"
           width="100"
           height="100"
+          onClick={() => history.push("/")}
         />
         <Button
           className={classes.google}
           variant="contained"
           color="primary"
           onClick={handleGoogleSignIn}
+          size="large"
           fullWidth
           startIcon={<GoogleIcon className={classes.icon} />}
         >
@@ -94,26 +106,57 @@ function Login({ history }) {
           or
         </Typography>
         <form className={classes.form} onSubmit={handleLogin} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="password"
-            label="Password"
-            type="password"
-            name="password"
-            autoComplete="current-password"
-          />
+          {error ? (
+            <TextField
+              error
+              variant="outlined"
+              label="Email"
+              margin="normal"
+              fullWidth
+              name="email"
+              id="email"
+              autoComplete="email"
+              autoFocus
+            />
+          ) : (
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+          )}
+
+          {error ? (
+            <TextField
+              error
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="password"
+              label="Password"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              helperText={error.toString()}
+            />
+          ) : (
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="password"
+              label="Password"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+            />
+          )}
+
           <FormControlLabel
             control={<Checkbox value="remember" color="secondary" />}
             label="Remember me"

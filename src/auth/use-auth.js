@@ -1,3 +1,5 @@
+// Use-auth.js. Adapted from https://usehooks.com/useAuth/
+
 import React, { useEffect, useState } from "react";
 import authHandling from "./AuthHandler";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -10,7 +12,13 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     authHandling.auth().onAuthStateChanged((user) => {
-      setCurrentUser(user);
+      if (user != null) {
+        if (user.emailVerified) {
+          setCurrentUser(user);
+        }
+      } else {
+        setCurrentUser(null);
+      }
       setPending(false);
     });
   }, []);

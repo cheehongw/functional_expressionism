@@ -31,8 +31,12 @@ function SignUp({ history }) {
       try {
         await authHandling
           .auth()
-          .createUserWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+          .createUserWithEmailAndPassword(email.value, password.value)
+          .then((userCredential) => {
+            userCredential.user.sendEmailVerification();
+            authHandling.auth().signOut();
+          });
+        history.push("/done");
       } catch (error) {
         alert(error);
       }
