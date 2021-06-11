@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
    	 	alignItems: "center",
 		flexGrow: 1,
 		maxHeight: "48px",
-		paddingLeft: "24px",
     	paddingRight: "24px",
 	},
 

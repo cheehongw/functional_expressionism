@@ -6,27 +6,38 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((themes) => ({
     root: {
-        margin:10,
+        flexGrow:1,
+    },
+
+    button: {
+        width: '100%',
+        margin: '0 auto',
+
     },
 
     content: {
         alignContent: 'center',
+        
+        //to make cardcontent span the whole buttonbase
+        width: '100%', 
+        margin: '0 auto',
 
     },
-});
+}));
 
 export default function SimpleCard(props) {
     const classes = useStyles();
     const history = useHistory();
 
-    const navigateTo = () => history.push(props.URL)
+    //short timeout to let users experience animation effect when pressing the button
+    const navigateTo = () => setTimeout(() => history.push(props.URL), 50)
 
     return (
         <Card className={classes.root}>
             <ButtonBase 
-                className={classes.content}
+                className={classes.button}
                 onClick={navigateTo}
             >
                 <CardContent className={classes.content}>
