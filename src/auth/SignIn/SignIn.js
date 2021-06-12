@@ -51,10 +51,10 @@ function Login({ history }) {
         if (tempUser) {
           if (tempUser.emailVerified) {
             history.push("/");
+          } else {
+            authHandling.auth().signOut();
+            setError("The user is not verified");
           }
-        } else {
-          authHandling.auth().signOut();
-          setError("The user is not verified");
         }
       } catch (error) {
         setError(error.message);
@@ -71,7 +71,7 @@ function Login({ history }) {
       await authHandling.auth().signInWithPopup(provider);
       history.push("/");
     } catch (error) {
-      alert(error.message);
+      alert("Failed to sign in: " + error.message);
     }
   }, [history]);
 
@@ -174,7 +174,7 @@ function Login({ history }) {
             SIGN IN WITH EMAIL
           </Button>
         </form>
-        <Button className={classes.forgot} href="#" color="primary">
+        <Button className={classes.forgot} href="/forgot" color="primary">
           Forgot password?
         </Button>
         <Button className={classes.signup} href="/signup" color="primary">

@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
       if (user != null) {
         if (user.emailVerified) {
           setCurrentUser(user);
+        } else {
+          setCurrentUser(null);
         }
       } else {
         setCurrentUser(null);

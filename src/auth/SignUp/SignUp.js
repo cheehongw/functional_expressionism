@@ -1,9 +1,10 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { withRouter, Redirect } from "react-router";
 import authHandling from "../AuthHandler";
 import { AuthContext } from "../use-auth.js";
 import firebase from "firebase/app";
 import { useStyles } from "./SignUp.page.style";
+import SignUpDone from "../SignUpDone/SignUpDone";
 import {
   Button,
   TextField,
@@ -11,38 +12,43 @@ import {
   Container,
   SvgIcon,
 } from "@material-ui/core";
-import { ReactComponent as Google } from "../search.svg";
+import { ReactComponent as GoogleLogo } from "../search.svg";
 
 function GoogleIcon(props) {
   return (
     <SvgIcon {...props}>
-      <Google />
+      <GoogleLogo />
     </SvgIcon>
   );
 }
 
 function SignUp({ history }) {
   const classes = useStyles();
+  const [complete, setComplete] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSignUp = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
+  const handleSignUp = useCallback(async (event) => {
+    event.preventDefault();
+    const { username, email, password } = event.target.elements;
+    if (username.value.length >= 4) {
       try {
         await authHandling
           .auth()
           .createUserWithEmailAndPassword(email.value, password.value)
           .then((userCredential) => {
+            const user = authHandling.auth().currentUser;
+            user.updateProfile({ displayName: username.value });
             userCredential.user.sendEmailVerification();
             authHandling.auth().signOut();
           });
-        history.push("/done");
+        setComplete(true);
       } catch (error) {
-        alert(error);
+        setError(error.message);
       }
-    },
-    [history]
-  );
+    } else {
+      setError("Username must be longer than 4 characters");
+    }
+  }, []);
 
   const handleGoogleSignUp = useCallback(async () => {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -60,7 +66,9 @@ function SignUp({ history }) {
     return <Redirect to="/" />;
   }
 
-  return (
+  return complete ? (
+    <SignUpDone />
+  ) : (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <img
@@ -69,6 +77,7 @@ function SignUp({ history }) {
           alt="Not available"
           width="100"
           height="100"
+          onClick={() => history.push("/")}
         />
         <Button
           className={classes.google}
@@ -85,26 +94,77 @@ function SignUp({ history }) {
           or
         </Typography>
         <form className={classes.form} onSubmit={handleSignUp} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            id="password"
-            label="Password"
-            type="password"
-            name="password"
-            autoComplete="current-password"
-          />
+          {error ? (
+            <TextField
+              error
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoFocus
+            />
+          ) : (
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoFocus
+            />
+          )}
+          {error ? (
+            <TextField
+              error
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+          ) : (
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+          )}
+          {error ? (
+            <TextField
+              error
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="password"
+              label="Password"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              helperText={error.toString()}
+            />
+          ) : (
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="password"
+              label="Password"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+            />
+          )}
           <Button
             className={classes.email}
             type="submit"

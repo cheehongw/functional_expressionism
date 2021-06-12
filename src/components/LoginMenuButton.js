@@ -7,7 +7,6 @@ import { AuthContext } from "../auth/use-auth";
 import authHandling from "../auth/AuthHandler";
 
 export default function LoginMenuButton(props) {
-  //replace default false value with custom isLoggedIn hook to fetch logged in status
   const { currentUser } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(null);
 
