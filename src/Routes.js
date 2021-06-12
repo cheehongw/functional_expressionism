@@ -6,7 +6,6 @@ import Stalls from "./views/Stalls.js";
 import NotFound from "./views/NotFound";
 import { CssBaseline } from "@material-ui/core";
 import { AuthProvider } from "./auth/use-auth.js";
-import PrivateRoute from "./auth/PrivateRoute";
 import SignIn from "./auth/SignIn/SignIn.js";
 import SignUp from "./auth/SignUp/SignUp.js";
 import ForgotPassword from "./auth/ForgotPassword/ForgotPassword.js";
@@ -17,9 +16,7 @@ const Routes = () => {
       <AuthProvider>
         <BrowserRouter>
           <Switch>
-            <PrivateRoute exact path="/">
-              <App />
-            </PrivateRoute>
+            <Route exact path="/" component={App} />
             <Route exact path="/locations" component={LocationList} />
             <Route exact path="/stalls" component={Stalls} />
             <Route exact path="/signin" component={SignIn} />

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import authHandling from "./AuthHandler";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import Loading from "./Loading/Loading";
 
 export const AuthContext = React.createContext();
 
@@ -26,12 +26,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   if (pending) {
-    return (
-      // Loading screen (to be done later)
-      <div>
-        <CircularProgress />
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

@@ -1,14 +1,15 @@
 import { Button, Container, TextField, Typography } from "@material-ui/core";
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { useState } from "react";
-import { withRouter } from "react-router";
+import { withRouter, Redirect } from "react-router";
 import authHandling from "../AuthHandler";
+import { AuthContext } from "../use-auth";
 import { useStyles } from "./ForgotPassword.page.style";
 
 function Forgot({ history }) {
   const classes = useStyles();
   const [error, setError] = useState(null);
-
+  const { currentUser } = useContext(AuthContext);
   const handlePasswordReset = useCallback(
     async (event) => {
       event.preventDefault();
@@ -22,6 +23,11 @@ function Forgot({ history }) {
     },
     [history]
   );
+
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
