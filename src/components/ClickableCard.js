@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ButtonBase } from '@material-ui/core';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((themes) => ({
     root: {
@@ -17,17 +17,25 @@ const useStyles = makeStyles((themes) => ({
 
     },
 
+    /* Styles applied to CardContent if `disablePadding={true}`. */
+    padding: {
+        padding: 0,
+    },
+
     content: {
         alignContent: 'center',
-        
-        //to make cardcontent span the whole buttonbase
-        width: '100%', 
+        width: '100%',    //to make cardcontent span the whole buttonbase 
         margin: '0 auto',
 
     },
 }));
 
 export default function SimpleCard(props) {
+
+    const { 
+        disablePadding=false,
+    } = props;
+
     const classes = useStyles();
     const history = useHistory();
 
@@ -39,11 +47,14 @@ export default function SimpleCard(props) {
             <ButtonBase 
                 className={classes.button}
                 onClick={navigateTo}
-            >
-                <CardContent className={classes.content}>
-                    <Typography className={classes.content}>
-                        {props.children}
-                    </Typography>
+                >
+                <CardContent className={ clsx(
+                    classes.content, 
+                    {
+                        [classes.padding]: disablePadding,
+                    },
+                ) }>
+                    {props.children}
                 </CardContent>
             </ButtonBase>
         </Card>
