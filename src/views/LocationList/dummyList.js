@@ -8,7 +8,7 @@ exports.dummyList = [{
     'locationName': 'def',
     'locationDesc': 'unused',
     'locationURL': '/def',
-    'locationImage': 'SRC', //insert image URL
+    'locationImage': 'https://s3-alpha-sig.figma.com/img/b807/9c8b/a7a0b57b0f0d93620bfdd4c9be9d7304?Expires=1624838400&Signature=M1oekJuJPKwDJCbLLUC5uNva8qiml7r2WX-0eJ1ecrYWuUGZsCQ1ONrU-tauvZHmfw9PQ2lrFe44tF~8GipCYW43EDPCyPmBmsmgmB8qgORmoM-5AfnLSq4BuS05y1r9Mwua6Bv59UEjolhUWIjWAaAXeB~gcn4auvL2EaXwY5RdUf5dwFXVovJ3ogXhjHKNfAkF3lyxejOkKNY7~9tLIUzL7zCCnz13yGCnVopngGP01StOBtmxYIKtZsRE9nFTffE4IVnLQop-YqIl~BwDXIRR1JvFgaQXF3ic2LuJTpLZ0X3e4BQww~0Bk2cX8HanzLVka3M3PBI9TVw~g4DEhQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA', //insert image URL
     'locationCoords': null, //for sorting by location
   }, {
     'locationName': 'ghi',

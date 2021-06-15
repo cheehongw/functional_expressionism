@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Header from '../../components/Header.js';
-import ClickableCard from '../../components/ClickableCard.js';
-import { List, ListItem, Typography } from '@material-ui/core';
-import styles from './LocationList.module.css';
+import { List } from '@material-ui/core';
+import LocationItem from "./LocationItem.js";
+
 
 //currently a dummy list.
 //in the future, API GET request will return a list of locations 
@@ -18,7 +18,7 @@ const LocationList = () => {
     locationList.concat([{ 'locationName': 'test', 'locationURL': '/test' }]));
 
   return (
-    <div className="LocationList">
+    <div>
       <Header> TinFood </Header>
 
       {/* Temporary button */}
@@ -26,25 +26,16 @@ const LocationList = () => {
 
       <List>
         {locationList.map(
-          (location) => (
-            <ListItem key={location.locationName}> {/* remember to change key*/}
-              <ClickableCard disablePadding={true} URL={location.locationURL}>
-                {/* <------- start of card content ------> */}
-                <div className={styles.div}>
-                  <img className={styles.cardImage}
-                    src={location.locationImage}
-                    alt={location.locationName} />
-                    
-                  <span className={styles.item1}>
-                    <Typography>
-                      {location.locationName}
-                    </Typography>
-                  </span>
-                </div>
-                {/* <------ end of card content ------> */}
-              </ClickableCard>
-            </ListItem>))
-        }
+          (l) => (
+            <LocationItem 
+              key={l.locationName}
+              locationName={l.locationName}
+              locationDesc={l.locationDesc}
+              locationURL={l.locationURL}
+              locationImage={l.locationImage}
+              locationCoords={l.locationCoords}
+            />
+          ))}
       </List>
 
     </div>
