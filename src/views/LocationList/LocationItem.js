@@ -13,10 +13,10 @@ export default function LocationItem(props) {
     //defaults are null, can be changed...
     const {
         locationName = null,
-        locationDesc = null,
+        //locationDesc = null,
         locationURL = null,
         locationImage = null,
-        locationCoords = null,
+        //locationCoords = null,
     } = props;
 
     return (
