@@ -2,27 +2,52 @@ import React, { useState } from "react";
 import Header from '../../components/Header.js';
 import { List } from '@material-ui/core';
 import LocationItem from "./LocationItem.js";
-
+import haversine from 'haversine-distance';
 
 //currently a dummy list.
 //in the future, API GET request will return a list of locations 
 //with similar structure for each location
 import dummyList from './dummyList.js';
 
+const geo = navigator.geolocation;
+
+/**
+ * A function that takes in the user's current position and sorts a list of locations 
+ * based on their haversine distance to said location, with closest location as the first item.
+ * 
+ * @param {Object[]} locList - The list of locations to be sorted
+ * @param {Object} currPos - The current position of the user that is used to calculated the distance.
+ * @param {Number} currPos.lat - Latitude of current position
+ * @param {Number} currPos.lon - Longitude of current position
+ * 
+ * @returns A new Array reference.
+ */
+function sortbyDistance(locList, currPos) {
+  return locList.slice().sort( (a,b) => {
+    const distanceToA = haversine(a.locationCoords, currPos, {unit:'meter', format:'{lat,lon}'});
+    const distanceToB = haversine(b.locationCoords, currPos, {unit:'meter', format:'{lat,lon}'});
+
+    console.log(`distance to A: ${distanceToA}, distance to B: ${distanceToB}`);
+
+    return distanceToA - distanceToB;
+  } )
+}
+
 const LocationList = () => {
 
   const [locationList, setLocationList] = useState(dummyList.dummyList);
-
-  //temporary placeholder logic to update the list
-  const refreshList = () => setLocationList(
-    locationList.concat([{ 'locationName': 'test', 'locationURL': '/test' }]));
+  
+  const onSortByLocation = () => {
+    geo.getCurrentPosition((pos) => { 
+      setLocationList(sortbyDistance(locationList, {lat: pos.coords.latitude, lon: pos.coords.longitude} ))
+      console.log(locationList); });
+  }
 
   return (
     <div>
       <Header> TinFood </Header>
 
-      {/* Temporary button */}
-      <button onClick={refreshList}> Refresh </button>
+      <button onClick={onSortByLocation}> Sort by Location </button>
 
       <List>
         {locationList.map(

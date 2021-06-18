@@ -5,7 +5,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 7.5fr 2.5fr;
-    grid-template-rows: 6fr 4fr;
+    grid-template-rows: 6fr 4fr 10px;
 }
 
 .cardImage {
@@ -24,15 +24,16 @@
 .name {
     z-index: 1;
     grid-column: 1/2;
-    grid-row: 1/3;
+    grid-row: 1/4;
     place-self: center center;
+
 }
 
 .toolTip {
     z-index: 1;
     grid-column: 2/3;
     grid-row: 2/3;
-    place-self: start start;
+    place-self: end start;
     width:calc(100% - 10px);
 
 }
