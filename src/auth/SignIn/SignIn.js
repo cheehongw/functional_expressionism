@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { withRouter, Redirect } from "react-router";
 import authHandling from "../AuthHandler.js";
 import { AuthContext } from "../use-auth.js";
@@ -14,6 +14,9 @@ import {
   SvgIcon,
 } from "@material-ui/core";
 import { ReactComponent as Google } from "../search.svg";
+import StorageHandler from "../../UserStorage/UserStorageHandler";
+
+const db = StorageHandler.firestore();
 
 function GoogleIcon(props) {
   return (
@@ -28,7 +31,7 @@ function Login({ history }) {
   const [persist, setPersist] = useState(false);
   const [error, setError] = useState(null);
   const { currentUser } = useContext(AuthContext);
-  const [tempUser, setTempUser] = useState(null);
+  const [tempUser, setTempUser] = useState(false);
 
   const handleLogin = useCallback(
     async (event) => {
@@ -47,21 +50,33 @@ function Login({ history }) {
         await authHandling
           .auth()
           .signInWithEmailAndPassword(email.value, password.value)
-          .then((response) => setTempUser(response.user));
-        if (tempUser) {
-          if (tempUser.emailVerified) {
-            history.push("/");
-          } else {
-            authHandling.auth().signOut();
-            setError("The user is not verified");
-          }
-        }
+          .then((response) => {
+            setTempUser(response.user);
+          });
       } catch (error) {
         setError(error.message);
       }
     },
-    [tempUser, persist, history]
+    [persist]
   );
+
+  // Check for user verification
+  useEffect(() => {
+    if (tempUser) {
+      if (tempUser.emailVerified) {
+        db.collection("users")
+          .doc(tempUser.uid.toString())
+          .set({ username: tempUser.displayName, avatarUrl: "" });
+        history.push("/");
+      } else {
+        tempUser.sendEmailVerification();
+        authHandling.auth().signOut();
+        setError(
+          "The user is not verified, a verification email has been resent"
+        );
+      }
+    }
+  }, [history, tempUser]);
 
   const handleGoogleSignIn = useCallback(async () => {
     await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);

@@ -9,6 +9,8 @@ import { AuthProvider } from "./auth/use-auth.js";
 import SignIn from "./auth/SignIn/SignIn.js";
 import SignUp from "./auth/SignUp/SignUp.js";
 import ForgotPassword from "./auth/ForgotPassword/ForgotPassword.js";
+import PrivateRoute from "./auth/PrivateRoute";
+import Profile from "./views/Profile/Profile.js";
 
 const Routes = () => {
   return (
@@ -22,6 +24,7 @@ const Routes = () => {
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/forgot" component={ForgotPassword} />
+            <PrivateRoute exact path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>

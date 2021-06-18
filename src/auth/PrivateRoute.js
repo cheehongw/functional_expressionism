@@ -1,5 +1,3 @@
-// Route for conditional rendering
-
 import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "./use-auth";
@@ -13,7 +11,7 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
         !!currentUser ? (
           <RouteComponent {...routeProps} />
         ) : (
-          <Redirect to={"/login"} />
+          <Redirect to={"/signin"} />
         )
       }
     />
