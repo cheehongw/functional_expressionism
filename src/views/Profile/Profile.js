@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../../auth/use-auth";
 import { Typography } from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
+//import StorageHandler from "../../UserStorage/UserStorageHandler";
+
+// const db = StorageHandler.firestore();
 
 // To be developed later
 function Profile() {
@@ -9,7 +11,6 @@ function Profile() {
 
   return (
     <div>
-      <Avatar></Avatar>
       <Typography variant="h5">{currentUser.displayName}</Typography>
     </div>
   );
