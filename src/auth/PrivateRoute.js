@@ -3,13 +3,17 @@ import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "./use-auth";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, doneOnetimeSetup } = useContext(AuthContext);
   return (
     <Route
       {...rest}
       render={(routeProps) =>
         !!currentUser ? (
-          <RouteComponent {...routeProps} />
+          doneOnetimeSetup ? (
+            <RouteComponent {...routeProps} />
+          ) : (
+            <Redirect to={"/onetimesetup"} />
+          )
         ) : (
           <Redirect to={"/signin"} />
         )

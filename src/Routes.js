@@ -11,6 +11,7 @@ import SignUp from "./auth/SignUp/SignUp.js";
 import ForgotPassword from "./auth/ForgotPassword/ForgotPassword.js";
 import PrivateRoute from "./auth/PrivateRoute";
 import Profile from "./views/Profile/Profile.js";
+import OnetimeSetup from "./auth/OnetimeSetup/OnetimeSetup.js";
 
 const Routes = () => {
   return (
@@ -25,6 +26,7 @@ const Routes = () => {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/forgot" component={ForgotPassword} />
             <PrivateRoute exact path="/profile" component={Profile} />
+            <Route exact path="/onetimesetup" component={OnetimeSetup} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>

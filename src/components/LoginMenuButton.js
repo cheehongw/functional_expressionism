@@ -5,10 +5,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import { AuthContext } from "../auth/use-auth";
 import authHandling from "../auth/AuthHandler";
+import { useHistory } from "react-router-dom";
 
 export default function LoginMenuButton(props) {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, doneOnetimeSetup } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(null);
+  let history = useHistory();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -35,7 +37,14 @@ export default function LoginMenuButton(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            history.push("/profile");
+          }}
+        >
+          Profile
+        </MenuItem>
         <MenuItem
           onClick={() => {
             handleClose();
@@ -62,5 +71,5 @@ export default function LoginMenuButton(props) {
     </div>
   );
 
-  return currentUser ? loggedInVariant : loggedOutVariant;
+  return currentUser && doneOnetimeSetup ? loggedInVariant : loggedOutVariant;
 }
