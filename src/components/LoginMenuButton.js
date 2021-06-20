@@ -12,8 +12,6 @@ export default function LoginMenuButton(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   let history = useHistory();
 
-  console.log(doneOnetimeSetup);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -30,7 +28,10 @@ export default function LoginMenuButton(props) {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <Avatar></Avatar>
+        <Avatar
+          src={currentUser ? currentUser.photoURL : ""}
+          alt="Profile"
+        ></Avatar>
       </Button>
       <Menu
         id="simple-menu"

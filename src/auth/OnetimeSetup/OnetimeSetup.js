@@ -66,6 +66,10 @@ function OnetimeSetup({ history }) {
             .collection("users")
             .doc(currentUser.uid.toString())
             .set({ username: username, avatarUrl: avatarUrl });
+          await currentUser.updateProfile({
+            displayName: username,
+            photoURL: avatarUrl,
+          });
           await setDoneOnetimeSetup(true);
           history.push("/");
         } else {
