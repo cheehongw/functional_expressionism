@@ -14,7 +14,7 @@ import {
   SvgIcon,
 } from "@material-ui/core";
 import { ReactComponent as Google } from "../search.svg";
-import StorageHandler from "../../UserStorage/UserStorageHandler";
+import StorageHandler from "../../userstorage/UserStorageHandler";
 
 const db = StorageHandler.firestore();
 

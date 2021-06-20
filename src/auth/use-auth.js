@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import authHandling from "./AuthHandler";
 import Loading from "./Loading/Loading";
-import StorageHandler from "../UserStorage/UserStorageHandler";
+import StorageHandler from "../userstorage/UserStorageHandler";
 
 const db = StorageHandler.firestore();
 
