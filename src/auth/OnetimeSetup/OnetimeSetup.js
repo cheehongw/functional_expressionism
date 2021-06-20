@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { AuthContext } from "../use-auth.js";
-import StorageHandler from "../../userstorage/UserStorageHandler";
+import StorageHandler from "../../UserStorage/UserStorageHandler";
 import { Redirect, withRouter } from "react-router";
 import { useStyles } from "./OnetimeSetup.page.style.js";
 
