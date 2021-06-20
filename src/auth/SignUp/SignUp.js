@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { withRouter, Redirect } from "react-router";
 import authHandling from "../AuthHandler";
 import { AuthContext } from "../use-auth.js";
@@ -13,9 +13,6 @@ import {
   SvgIcon,
 } from "@material-ui/core";
 import { ReactComponent as GoogleLogo } from "../search.svg";
-import StorageHandler from "../../UserStorage/UserStorageHandler";
-
-const db = StorageHandler.firestore();
 
 function GoogleIcon(props) {
   return (
@@ -27,55 +24,26 @@ function GoogleIcon(props) {
 
 function SignUp({ history }) {
   const classes = useStyles();
-  const [name, setName] = useState("");
-  const [usernameExist, setUsernameExist] = useState(0);
 
   const [error, setError] = useState(null);
   const [complete, setComplete] = useState(false);
 
-  const handleSignUp = useCallback(
-    async (event) => {
-      event.preventDefault();
-      const { username, email, password } = event.target.elements;
-      if (!usernameExist) {
-        if (username.value.length >= 4) {
-          try {
-            await authHandling
-              .auth()
-              .createUserWithEmailAndPassword(email.value, password.value)
-              .then((userCredential) => {
-                const user = authHandling.auth().currentUser;
-                user.updateProfile({ displayName: username.value });
-                userCredential.user.sendEmailVerification();
-                authHandling.auth().signOut();
-              });
-            setComplete(true);
-          } catch (error) {
-            setError(error.message);
-          }
-        } else {
-          setError("Username must be longer than 4 characters");
-        }
-      } else {
-        setError("Username already exists");
-      }
-    },
-    [usernameExist]
-  );
-
-  useEffect(() => {
-    if (name !== "") {
-      db.collection("users")
-        .where("username", "==", name)
-        .get()
-        .then((querySnapshot) =>
-          setUsernameExist(querySnapshot.docs.length > 0)
-        )
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
+  const handleSignUp = useCallback(async (event) => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    try {
+      await authHandling
+        .auth()
+        .createUserWithEmailAndPassword(email.value, password.value)
+        .then((userCredential) => {
+          userCredential.user.sendEmailVerification();
+          authHandling.auth().signOut();
         });
+      setComplete(true);
+    } catch (error) {
+      setError(error.message);
     }
-  }, [name]);
+  }, []);
 
   const handleGoogleSignUp = useCallback(async () => {
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -121,30 +89,6 @@ function SignUp({ history }) {
           or
         </Typography>
         <form className={classes.form} onSubmit={handleSignUp} noValidate>
-          {error ? (
-            <TextField
-              error
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              onChange={(event) => setName(event.target.value)}
-              autoFocus
-            />
-          ) : (
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              onChange={(event) => setName(event.target.value)}
-              autoFocus
-            />
-          )}
           {error ? (
             <TextField
               error

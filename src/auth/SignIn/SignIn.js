@@ -14,7 +14,7 @@ import {
   SvgIcon,
 } from "@material-ui/core";
 import { ReactComponent as Google } from "../search.svg";
-import StorageHandler from "../../UserStorage/UserStorageHandler";
+import StorageHandler from "../../userstorage/UserStorageHandler";
 
 const db = StorageHandler.firestore();
 
@@ -30,7 +30,7 @@ function Login({ history }) {
   const classes = useStyles();
   const [persist, setPersist] = useState(false);
   const [error, setError] = useState(null);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, doneOnetimeSetup } = useContext(AuthContext);
   const [tempUser, setTempUser] = useState(false);
 
   const handleLogin = useCallback(
@@ -66,8 +66,14 @@ function Login({ history }) {
       if (tempUser.emailVerified) {
         db.collection("users")
           .doc(tempUser.uid.toString())
-          .set({ username: tempUser.displayName, avatarUrl: "" });
-        history.push("/");
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              history.push("/");
+            } else {
+              history.push("/onetimesetup");
+            }
+          });
       } else {
         tempUser.sendEmailVerification();
         authHandling.auth().signOut();
@@ -84,17 +90,15 @@ function Login({ history }) {
     firebase.auth().useDeviceLanguage();
     try {
       await authHandling.auth().signInWithPopup(provider);
-      history.push("/");
+      history.push("/onetimesetup");
     } catch (error) {
       alert("Failed to sign in: " + error.message);
     }
   }, [history]);
 
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
-
-  return (
+  return currentUser && doneOnetimeSetup ? (
+    <Redirect to="/" />
+  ) : (
     <Container component="main" maxWidth="xs">
       <div className={classes.paper}>
         <img

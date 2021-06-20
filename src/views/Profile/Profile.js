@@ -8,7 +8,12 @@ import { Typography } from "@material-ui/core";
 // To be developed later
 function Profile() {
   const { currentUser } = useContext(AuthContext);
-  return <Typography variant="h5">{currentUser.displayName}</Typography>;
+
+  return (
+    <div>
+      <Typography variant="h5">{currentUser.displayName}</Typography>
+    </div>
+  );
 }
 
 export default Profile;
