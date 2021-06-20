@@ -34,7 +34,8 @@
     grid-column: 2/3;
     grid-row: 2/3;
     place-self: end start;
-    width:calc(auto - 10px);
+    --width: auto;
+    width:calc(var(--width) - 10px);
 
 }
 
