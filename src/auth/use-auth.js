@@ -40,15 +40,14 @@ export const AuthProvider = ({ children }) => {
     });
   }, []);
 
-  if (pending) {
-    return <Loading />;
-  }
-
-  return (
+  return pending ? (
+    <Loading />
+  ) : (
     <AuthContext.Provider
       value={{
         currentUser,
         doneOnetimeSetup,
+        setDoneOnetimeSetup,
       }}
     >
       {children}

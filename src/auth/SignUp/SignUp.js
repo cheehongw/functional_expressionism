@@ -50,7 +50,7 @@ function SignUp({ history }) {
     firebase.auth().useDeviceLanguage();
     try {
       await authHandling.auth().signInWithPopup(provider);
-      history.push("/");
+      history.push("/onetimesetup");
     } catch (error) {
       alert(error.message);
     }

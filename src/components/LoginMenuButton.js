@@ -12,6 +12,8 @@ export default function LoginMenuButton(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   let history = useHistory();
 
+  console.log(doneOnetimeSetup);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
