@@ -1,23 +1,56 @@
 import styles from './LocationItem.module.css';
-import { Chip, ListItem, Typography } from '@material-ui/core';
+import { Chip, LinearProgress, ListItem, Typography } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 import ClickableCard from '../../components/ClickableCard.js';
+import haversine from 'haversine-distance';
+import convert from 'convert-units';
+
+/**
+ * A function to convert values with units to String.
+ * 
+ * Object is typically received from toBest()::convert-units, but any object can
+ * be used if it fulfils the following structure:
+ * 
+ * @param {Object} object The object encapsulating a value and its unit.
+ * @param {Number} object.val The object's value
+ * @param {String} object.unit The object's unit.
+ * 
+ * @returns A string.
+ */
+function unitsToString(object) {
+    return `${object.val.toPrecision(4)} ${object.unit}`
+}
 
 /**
  * LocationItem in LocationList
  * 
- * @param {*} props The values associated with the location
+ * @param {Object} props The values associated with the location
  * @returns JSX component
  */
 export default function LocationItem(props) {
 
-    //defaults are null, can be changed...
     const {
         locationName = null,
         //locationDesc = null,
         locationURL = null,
         locationImage = null,
-        //locationCoords = null,
+        locationCoords,
+        rating = 0,
+        currPos,
+        toolTip = 'Rating',
     } = props;
+
+    let labelContent;
+
+    if (toolTip === 'Rating' || toolTip === 'Alphabetical') {
+        labelContent = <Rating value={rating} precision={0.1} size='small' readOnly/>
+    } else if (toolTip === 'Distance') {
+        labelContent = currPos === undefined 
+            ? <LinearProgress className={styles.progress}/>
+            :<Typography className={styles.distanceTypography}> 
+                {unitsToString(convert(haversine(locationCoords, currPos)).from('m').toBest())} 
+            </Typography>
+    }
 
     return (
         <ListItem>
@@ -36,7 +69,7 @@ export default function LocationItem(props) {
 
                     <Chip className={styles.toolTip}
                         size='small'
-                        label={<Typography> 500m </Typography>}
+                        label ={ labelContent }
                     />
 
                 </div>

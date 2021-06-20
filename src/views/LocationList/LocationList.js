@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from '../../components/Header.js';
 import { List } from '@material-ui/core';
 import LocationItem from "./LocationItem.js";
 import haversine from 'haversine-distance';
+import CollapsingChipMenu from "./CollapsingChipMenu.js";
 
 //currently a dummy list.
 //in the future, API GET request will return a list of locations 
@@ -23,42 +24,68 @@ const geo = navigator.geolocation;
  * @returns A new Array reference.
  */
 function sortbyDistance(locList, currPos) {
-  return locList.slice().sort( (a,b) => {
-    const distanceToA = haversine(a.locationCoords, currPos, {unit:'meter', format:'{lat,lon}'});
-    const distanceToB = haversine(b.locationCoords, currPos, {unit:'meter', format:'{lat,lon}'});
+  return locList.slice().sort((a, b) => {
+    const distanceToA = haversine(a.locationCoords, currPos);
+    const distanceToB = haversine(b.locationCoords, currPos);
 
-    console.log(`distance to A: ${distanceToA}, distance to B: ${distanceToB}`);
+    const output = distanceToA - distanceToB;
 
-    return distanceToA - distanceToB;
-  } )
+    return output === 0 
+      ? (a.locationName < b.locationName ? -1 : 1)
+      : output;
+  })
 }
 
 const LocationList = () => {
 
   const [locationList, setLocationList] = useState(dummyList.dummyList);
-  
-  const onSortByLocation = () => {
-    geo.getCurrentPosition((pos) => { 
-      setLocationList(sortbyDistance(locationList, {lat: pos.coords.latitude, lon: pos.coords.longitude} ))
-      console.log(locationList); });
-  }
+  //used to determine the display state of toolTip
+  const [sortingBy, setSortingBy] = useState('Alphabetical');
+  const [currPos, setCurrPos] = useState();
+
+
+  useEffect(() => {
+    if (sortingBy === 'Distance') {
+      geo.getCurrentPosition((pos) => {
+        setLocationList( 
+          locationList => sortbyDistance(locationList, { lat: pos.coords.latitude, lon: pos.coords.longitude }));
+
+        setCurrPos(c => { 
+          return {lat: pos.coords.latitude, lon: pos.coords.longitude}; 
+        });
+      })
+    } else if (sortingBy === 'Rating') {
+      setLocationList(locationList => locationList.slice().sort((a, b) => {
+        return a.rating - b.rating;
+      }));
+    } else { //default sort by alphabetical
+      setLocationList(locationList => locationList.slice().sort((a,b) => {
+        return a.locationName < b.locationName ? -1 : 1;
+      }));
+    }
+  }, [sortingBy])
 
   return (
     <div>
       <Header> TinFood </Header>
 
-      <button onClick={onSortByLocation}> Sort by Location </button>
+      <CollapsingChipMenu
+        selector={['Distance', 'Rating', 'Alphabetical']}
+        childData={setSortingBy} />
 
-      <List>
+      <List >
         {locationList.map(
           (l) => (
-            <LocationItem 
+            <LocationItem
               key={l.locationName}
               locationName={l.locationName}
               locationDesc={l.locationDesc}
               locationURL={l.locationURL}
               locationImage={l.locationImage}
               locationCoords={l.locationCoords}
+              currPos = {currPos}
+              rating={l.rating}
+              toolTip={sortingBy}
             />
           ))}
       </List>

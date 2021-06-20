@@ -25,6 +25,34 @@ exports.dummyList = [{
     'locationURL': '/stalls',
     'locationImage': 'SRC', //insert image URL
     'locationCoords': {lat: 1.2988063249818835, lon: 103.77511020012469},
-    'rating': 2.4,
-                      
-  }];
+    'rating': 2.0,               
+  }, {
+    'locationName': 'stalls1',
+    'locationDesc': 'unused',
+    'locationURL': '/stalls',
+    'locationImage': 'SRC', //insert image URL
+    'locationCoords': {lat: 1.2988063249818835, lon: 103.77511020012469},
+    'rating': 2.1,               
+  }, {
+    'locationName': 'stalls2',
+    'locationDesc': 'unused',
+    'locationURL': '/stalls',
+    'locationImage': 'SRC', //insert image URL
+    'locationCoords': {lat: 1.2988063249818835, lon: 103.77511020012469},
+    'rating': 2.2,               
+  }, {
+    'locationName': 'stalls3',
+    'locationDesc': 'unused',
+    'locationURL': '/stalls',
+    'locationImage': 'SRC', //insert image URL
+    'locationCoords': {lat: 1.2988063249818835, lon: 103.77511020012469},
+    'rating': 2.3,               
+  }, {
+    'locationName': 'stalls4',
+    'locationDesc': 'unused',
+    'locationURL': '/stalls',
+    'locationImage': 'SRC', //insert image URL
+    'locationCoords': {lat: 1.2988063249818835, lon: 103.77511020012469},
+    'rating': 2.4,               
+  }
+];

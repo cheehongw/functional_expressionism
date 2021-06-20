@@ -34,6 +34,15 @@
     grid-column: 2/3;
     grid-row: 2/3;
     place-self: end start;
-    width:calc(100% - 10px);
+    width:calc(auto - 10px);
 
+}
+
+.distanceTypography {
+    padding: 0 1em 0 1em;
+
+}
+
+.progress {
+    width:3rem;
 }
