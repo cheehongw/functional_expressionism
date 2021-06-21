@@ -1,0 +1,10 @@
+.collapse {
+    position: absolute;
+    z-index: 2;
+    background-color: dimgrey;
+    border-radius: 10px;
+}
+
+.selectors {
+    width:100%
+}

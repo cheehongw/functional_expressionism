@@ -1,5 +1,6 @@
 import { Chip, Collapse, List, ListItem, Typography } from '@material-ui/core';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import styles from './CollapsingChipMenu.module.css';
 
 export default function CollapsingChipMenu(props) {
 
@@ -10,11 +11,13 @@ export default function CollapsingChipMenu(props) {
     //Base component's display state
     const [base, setBase] = useState('Sort By');
 
+    const fireAfterClose = useRef('Sort By');
+
     const toggleCollaspe = () => { setOpen(!open) }
 
     const handleSelection = (setting) => { 
         props.childData(setting);
-        setBase(setting); 
+        fireAfterClose.current = setting;
     };
 
     return (
@@ -22,11 +25,13 @@ export default function CollapsingChipMenu(props) {
         <Chip 
         onClick={toggleCollaspe} 
         label={<Typography> {base} </Typography>} />
-        <Collapse in={open} >
+        <Collapse className={styles.collapse}
+        in={open} onExiting={() => setBase(fireAfterClose.current)}>
             <List>
                 {selector.map((i) => (
                 <ListItem key={i}>
-                    <Chip onClick={() => handleSelection(i)}
+                    <Chip className={styles.selectors} 
+                    onClick={() => handleSelection(i)}
                     label={<Typography> {i} </Typography>} />
                 </ListItem>))}
             </List>
