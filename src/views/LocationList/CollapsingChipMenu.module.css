@@ -1,5 +1,14 @@
+.root {
+    width:fit-content;
+    position: relative;
+    margin-right:10px;
+    margin-left:auto;
+    padding-top: 10px;
+}
+
 .collapse {
     position: absolute;
+    right:0;
     z-index: 2;
     background-color: dimgrey;
     border-radius: 10px;

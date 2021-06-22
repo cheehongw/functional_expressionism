@@ -21,7 +21,7 @@ export default function CollapsingChipMenu(props) {
     };
 
     return (
-        <div>
+        <div className={styles.root}>
         <Chip 
         onClick={toggleCollaspe} 
         label={<Typography> {base} </Typography>} />

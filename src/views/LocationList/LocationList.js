@@ -5,6 +5,7 @@ import LocationItem from "./LocationItem.js";
 import haversine from 'haversine-distance';
 import CollapsingChipMenu from "./CollapsingChipMenu.js";
 
+
 //currently a dummy list.
 //in the future, API GET request will return a list of locations 
 //with similar structure for each location
@@ -73,7 +74,7 @@ const LocationList = () => {
         selector={['Distance', 'Rating', 'Alphabetical']}
         childData={setSortingBy} />
 
-      <List >
+      <List disablePadding={true} >
         {locationList.map(
           (l) => (
             <LocationItem
