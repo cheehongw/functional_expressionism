@@ -3,11 +3,8 @@ import { AuthContext } from "../../auth/use-auth";
 import { Avatar, Typography } from "@material-ui/core";
 import { useStyles } from "./Profile.page.style";
 import Header from "../../components/Header";
-//import StorageHandler from "../../UserStorage/UserStorageHandler";
+import { Button } from "@material-ui/core";
 
-// const db = StorageHandler.firestore();
-
-// To be developed later
 function Profile() {
   const classes = useStyles();
   const { currentUser } = useContext(AuthContext);
@@ -22,6 +19,16 @@ function Profile() {
           alt="Profile"
         ></Avatar>
         <Typography variant="h5">{currentUser.displayName}</Typography>
+
+        <Button href="/profile/passwordchange" color="primary">
+          Change user password
+        </Button>
+        <Button href="/profile/profilechange" color="primary">
+          Change user profile
+        </Button>
+        <Button href="/profile/accountdelete" color="primary">
+          Delete account
+        </Button>
       </div>
     </div>
   );

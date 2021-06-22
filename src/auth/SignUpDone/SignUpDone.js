@@ -27,7 +27,7 @@ function SignUpDone({ history }) {
         <Typography variant="body1">
           You will be redirected back to the log in page
         </Typography>
-        <Typography variant="overline">
+        <Typography variant="subtitle1">
           If you are not redirected, click on this{" "}
           <Link href="/signin">link</Link>
         </Typography>

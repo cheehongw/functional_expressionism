@@ -12,6 +12,9 @@ import ForgotPassword from "./auth/ForgotPassword/ForgotPassword.js";
 import PrivateRoute from "./auth/PrivateRoute";
 import Profile from "./views/Profile/Profile.js";
 import OnetimeSetup from "./auth/OnetimeSetup/OnetimeSetup.js";
+import ChangePassword from "./auth/ChangePassword/ChangePassword.js";
+import ChangeProfile from "./auth/ChangeProfile/ChangeProfile.js";
+import DeleteAccount from "./auth/DeleteAccount/DeleteAccount.js";
 
 const Routes = () => {
   return (
@@ -26,6 +29,21 @@ const Routes = () => {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/forgot" component={ForgotPassword} />
             <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute
+              exact
+              path="/profile/passwordchange"
+              component={ChangePassword}
+            />
+            <PrivateRoute
+              exact
+              path="/profile/profilechange"
+              component={ChangeProfile}
+            />
+            <PrivateRoute
+              exact
+              path="/profile/accountdelete"
+              component={DeleteAccount}
+            />
             <Route exact path="/onetimesetup" component={OnetimeSetup} />
             <Route component={NotFound} />
           </Switch>

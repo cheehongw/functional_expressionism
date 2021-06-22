@@ -87,7 +87,7 @@ function Login({ history }) {
   const handleGoogleSignIn = useCallback(async () => {
     await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().useDeviceLanguage();
+    await firebase.auth().useDeviceLanguage();
     try {
       await authHandling.auth().signInWithPopup(provider);
       history.push("/onetimesetup");

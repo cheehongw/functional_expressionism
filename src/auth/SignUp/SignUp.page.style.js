@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   email: {
-    marginTop: theme.spacing(0.5),
+    marginTop: theme.spacing(0.6),
   },
   form: {
     width: "100%",

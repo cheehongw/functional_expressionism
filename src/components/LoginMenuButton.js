@@ -73,6 +73,5 @@ export default function LoginMenuButton(props) {
       </Button>
     </div>
   );
-
   return currentUser && doneOnetimeSetup ? loggedInVariant : loggedOutVariant;
 }

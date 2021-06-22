@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from "react";
 import authHandling from "./AuthHandler";
 import Loading from "./Loading/Loading";
-import StorageHandler from "../userstorage/UserStorageHandler";
-
-const db = StorageHandler.firestore();
 
 export const AuthContext = React.createContext();
 
@@ -20,16 +17,7 @@ export const AuthProvider = ({ children }) => {
       if (user != null) {
         if (user.emailVerified) {
           setCurrentUser(user);
-          db.collection("users")
-            .doc(user.uid.toString())
-            .get()
-            .then((doc) => {
-              if (doc.exists) {
-                setDoneOnetimeSetup(true);
-              } else {
-                setDoneOnetimeSetup(false);
-              }
-            });
+          setDoneOnetimeSetup(user.photoURL !== "");
         } else {
           setCurrentUser(null);
         }
