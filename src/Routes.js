@@ -15,6 +15,7 @@ import OnetimeSetup from "./auth/OnetimeSetup/OnetimeSetup.js";
 import ChangePassword from "./auth/ChangePassword/ChangePassword.js";
 import ChangeProfile from "./auth/ChangeProfile/ChangeProfile.js";
 import DeleteAccount from "./auth/DeleteAccount/DeleteAccount.js";
+import FeelingLucky from "./views/FeelingLucky/FeelingLucky.js";
 
 const Routes = () => {
   return (
@@ -45,6 +46,7 @@ const Routes = () => {
               component={DeleteAccount}
             />
             <Route exact path="/onetimesetup" component={OnetimeSetup} />
+            <Route exact path="/lucky" component={FeelingLucky} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
