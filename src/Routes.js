@@ -46,7 +46,7 @@ const Routes = () => {
               component={DeleteAccount}
             />
             <Route exact path="/onetimesetup" component={OnetimeSetup} />
-            <Route exact path="/lucky" component={FeelingLucky} />
+            <Route exact path="/suggestions" component={FeelingLucky} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
