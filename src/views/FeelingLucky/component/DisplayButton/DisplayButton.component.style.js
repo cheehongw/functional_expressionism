@@ -18,6 +18,5 @@ export const useStyles = makeStyles((theme) => ({
   },
   cross: {
     color: "#e76d5c",
-    fontSize: "53px",
   },
 }));
