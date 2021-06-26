@@ -59,16 +59,14 @@ function FeelingLucky() {
   const classes = useStyles();
 
   const [cards, setCards] = useState(INITIAL_CARDS_STATE);
-  console.log(cards);
 
-  const swiped = (dir, card) => {
-    console.log(card.id + " has left the screen");
-    if (dir === "right") {
-    }
-  };
+  const swiped = (dir, card) => {};
 
-  const outOfFrame = () => {
+  const outOfFrame = (dir, card) => {
     var temp = cards;
+    if (dir === "right") {
+      temp.push(card);
+    }
     setCards(temp.slice(1));
   };
 
@@ -83,7 +81,7 @@ function FeelingLucky() {
             className={classes.swipe}
             preventSwipe={["up", "down"]}
             onSwipe={(dir) => swiped(dir, cards[0])}
-            onCardLeftScreen={outOfFrame}
+            onCardLeftScreen={(dir) => outOfFrame(dir, cards[0])}
             key={cards[0].dishName}
           >
             <DisplayCard dishData={cards[0]} />
