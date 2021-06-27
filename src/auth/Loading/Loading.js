@@ -1,17 +1,17 @@
 import { Container, Typography } from "@material-ui/core";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { useStyles } from "./Loading.page.style";
+import CircleLoader from "react-spinners/CircleLoader";
 
 function Loading() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.paper} component="main" maxWidth="xs">
-      <div>
-        <Typography component="h1" variant="h5">
+    <Container component="main" maxWidth="xs">
+      <div className={classes.paper}>
+        <Typography className={classes.text} component="h1" variant="h5">
           Loading...
         </Typography>
-        <CircularProgress className={classes.circular} />
+        <CircleLoader color="#107896" loading={true} size={100} />
       </div>
     </Container>
   );

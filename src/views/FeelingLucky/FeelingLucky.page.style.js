@@ -13,14 +13,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     display: "flex",
   },
-  marginTop5: {
-    marginTop: theme.spacing(5),
-  },
-  marginTop2: {
-    marginTop: theme.spacing(2),
-  },
-  marginTop1: {
+  icon: {
     marginTop: theme.spacing(1),
+    height: theme.spacing(13),
+    width: theme.spacing(13),
+  },
+  status: {
+    marginBottom: theme.spacing(1),
   },
 }));
 

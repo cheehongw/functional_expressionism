@@ -5,10 +5,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     flexDirection: "column",
   },
   circular: {
     marginLeft: theme.spacing(3.5),
+  },
+  text: {
+    marginBottom: theme.spacing(4),
   },
 }));
 
