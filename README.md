@@ -106,7 +106,7 @@ We decided to use Firebase Authentication as it is secure and easy to deploy.
 
 We are intending to use ExpressJS/Firebase to act as an API endpoint, to handle queries to our database and handle algorithms for recommendations.
 
-# 5. Wiki:
+# 5. Wiki
 You can view the wiki which contains the Milestone 1 and Milestone 2 report [here](https://github.com/cheehongw/functional_expressionism/wiki)
 
 
