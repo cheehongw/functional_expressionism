@@ -6,11 +6,6 @@ import haversine from 'haversine-distance';
 import CollapsingChipMenu from "./CollapsingChipMenu.js";
 
 
-//currently a dummy list.
-//in the future, API GET request will return a list of locations 
-//with similar structure for each location
-import dummyList from './dummyList.js';
-
 const geo = navigator.geolocation;
 
 /**
@@ -31,7 +26,7 @@ function sortbyDistance(locList, currPos) {
 
     const output = distanceToA - distanceToB;
 
-    return output === 0 
+    return output === 0
       ? (a.locationName < b.locationName ? -1 : 1)
       : output;
   })
@@ -39,20 +34,28 @@ function sortbyDistance(locList, currPos) {
 
 const LocationList = () => {
 
-  const [locationList, setLocationList] = useState(dummyList.dummyList);
+  const [locationList, setLocationList] = useState([]);
   //used to determine the display state of toolTip
   const [sortingBy, setSortingBy] = useState('Alphabetical');
   const [currPos, setCurrPos] = useState();
 
+  useEffect(() => {
+    fetch('https://functional-expressionism-api.herokuapp.com/locations')
+      .then(result => result.json())
+      .then(
+        result => {
+          setLocationList(result);
+        })
+    },[]);
 
   useEffect(() => {
     if (sortingBy === 'Distance') {
       geo.getCurrentPosition((pos) => {
-        setLocationList( 
+        setLocationList(
           locationList => sortbyDistance(locationList, { lat: pos.coords.latitude, lon: pos.coords.longitude }));
 
-        setCurrPos(c => { 
-          return {lat: pos.coords.latitude, lon: pos.coords.longitude}; 
+        setCurrPos(c => {
+          return { lat: pos.coords.latitude, lon: pos.coords.longitude };
         });
       })
     } else if (sortingBy === 'Rating') {
@@ -60,7 +63,7 @@ const LocationList = () => {
         return a.rating - b.rating;
       }));
     } else { //default sort by alphabetical
-      setLocationList(locationList => locationList.slice().sort((a,b) => {
+      setLocationList(locationList => locationList.slice().sort((a, b) => {
         return a.locationName < b.locationName ? -1 : 1;
       }));
     }
@@ -81,10 +84,10 @@ const LocationList = () => {
               key={l.locationName}
               locationName={l.locationName}
               locationDesc={l.locationDesc}
-              locationURL={l.locationURL}
+              locationURL={'/notFound'}
               locationImage={l.locationImage}
               locationCoords={l.locationCoords}
-              currPos = {currPos}
+              currPos={currPos}
               rating={l.rating}
               toolTip={sortingBy}
             />
