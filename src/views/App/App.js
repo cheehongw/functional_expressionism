@@ -19,9 +19,16 @@ export default function App() {
           src="https://upload.wikimedia.org/wikipedia/commons/0/0d/National_University_of_Singapore%2C_panorama%2C_Nov_06.jpg"
           alt="TinFood homepage"
         />
-        <h1 className={styles.text}>
+        <header className={styles.text}>
           Tin<span>Food</span>
-        </h1>
+        </header>
+        <h2 className={styles.subtitle}>
+          choose what to eat in <span className={styles.nus}>NUS</span>
+        </h2>
+        <h2 className={styles.subtitle}>
+          <span className={styles.text1}>pick from a listing</span> OR
+          <span className={styles.tinder}> swipe like Tinder</span>
+        </h2>
       </div>
 
       <div className={styles.options}>
@@ -37,7 +44,7 @@ export default function App() {
         <ClickableCard URL="/suggestions">
           <div className={styles.cardContent}>
             <Typography className={classes.cardText} variant="h6">
-              I'm Feeling Lucky
+              I'm feeling lucky
             </Typography>
             <Clover className={styles.icon} />
           </div>
