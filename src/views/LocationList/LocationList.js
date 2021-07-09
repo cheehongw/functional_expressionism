@@ -41,6 +41,7 @@ const LocationList = () => {
 
   useEffect(() => {
     fetch('https://functional-expressionism-api.herokuapp.com/locations')
+    //fetch('http://localhost:3000/locations')
       .then(result => result.json())
       .then(
         result => {
@@ -84,7 +85,7 @@ const LocationList = () => {
               key={l.locationName}
               locationName={l.locationName}
               locationDesc={l.locationDesc}
-              locationURL={'/notFound'}
+              locationURL={`/locations/${l._id}`}
               locationImage={l.locationImage}
               locationCoords={l.locationCoords}
               currPos={currPos}
