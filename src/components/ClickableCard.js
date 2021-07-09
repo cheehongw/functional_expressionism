@@ -30,23 +30,25 @@ const useStyles = makeStyles((themes) => ({
     },
 }));
 
-export default function SimpleCard(props) {
+export default function ClickableCard(props) {
 
     const { 
         disablePadding=false,
+        URL = '/',
+        onClick = () => {},
     } = props;
 
     const classes = useStyles();
     const history = useHistory();
 
     //short timeout to let users experience animation effect when pressing the button
-    const navigateTo = () => setTimeout(() => history.push(props.URL), 50)
+    const navigateTo = () => setTimeout(() => history.push(URL), 50)
 
     return (
         <Card className={classes.root}>
             <ButtonBase 
                 className={classes.button}
-                onClick={navigateTo}
+                onClick={props.onClick === undefined ? navigateTo : onClick}
                 >
                 <CardContent className={ clsx(
                     classes.content, 

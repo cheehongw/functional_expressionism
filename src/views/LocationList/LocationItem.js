@@ -5,6 +5,7 @@ import ClickableCard from '../../components/ClickableCard.js';
 import unitsToString from '../../utils/unitsToString.js'
 import haversine from 'haversine-distance';
 import convert from 'convert-units';
+import { useHistory } from 'react-router-dom';
 
 /**
  * LocationItem in LocationList
@@ -22,7 +23,6 @@ export default function LocationItem(props) {
     const {
         locationName = null,
         //locationDesc = null,
-        locationURL = null,
         locationImage = null,
         locationCoords,
         rating = 0,
@@ -42,9 +42,14 @@ export default function LocationItem(props) {
             </Typography>
     }
 
+    const history = useHistory();
+
     return (
         <ListItem>
-            <ClickableCard disablePadding={true} URL={locationURL}>
+            <ClickableCard disablePadding={true}
+                onClick={() => 
+                    setTimeout(() => history.push(`/locations/${_id}`), 50) }>
+
                 {/* <------- start of card content ------> */}
                 <div className={styles.div}>
                     <img className={styles.cardImage}
