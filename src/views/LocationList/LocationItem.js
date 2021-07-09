@@ -15,25 +15,30 @@ import convert from 'convert-units';
 export default function LocationItem(props) {
 
     const {
+        currPos,
+        toolTip = 'Rating',
+    } = props;
+
+    const {
         locationName = null,
         //locationDesc = null,
         locationURL = null,
         locationImage = null,
         locationCoords,
         rating = 0,
-        currPos,
-        toolTip = 'Rating',
-    } = props;
+        _id,
+    } = props.locationObj
+
 
     let labelContent;
 
     if (toolTip === 'Rating' || toolTip === 'Alphabetical') {
-        labelContent = <Rating value={rating} precision={0.1} size='small' readOnly/>
+        labelContent = <Rating value={rating} precision={0.1} size='small' readOnly />
     } else if (toolTip === 'Distance') {
-        labelContent = currPos === undefined 
-            ? <LinearProgress className={styles.progress}/>
-            :<Typography className={styles.distanceTypography}> 
-                {unitsToString(convert(haversine(locationCoords, currPos)).from('m').toBest())} 
+        labelContent = currPos === undefined
+            ? <LinearProgress className={styles.progress} />
+            : <Typography className={styles.distanceTypography}>
+                {unitsToString(convert(haversine(locationCoords, currPos)).from('m').toBest())}
             </Typography>
     }
 
@@ -54,7 +59,7 @@ export default function LocationItem(props) {
 
                     <Chip className={styles.toolTip}
                         size='small'
-                        label ={ labelContent }
+                        label={labelContent}
                     />
 
                 </div>

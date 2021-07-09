@@ -58,14 +58,9 @@ const LocationList = () => {
           (l) => (
             <LocationItem
               key={l.locationName}
-              locationName={l.locationName}
-              locationDesc={l.locationDesc}
-              locationURL={`/locations/${l._id}`}
-              locationImage={l.locationImage}
-              locationCoords={l.locationCoords}
               currPos={currPos}
-              rating={l.rating}
               toolTip={sortingBy}
+              locationObj = {l}
             />
           ))}
       </List>
