@@ -2,10 +2,13 @@ import { useContext, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { ListItemIcon } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import { AuthContext } from "../auth/use-auth";
 import authHandling from "../auth/AuthHandler";
 import { useHistory } from "react-router-dom";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 
 export default function LoginMenuButton(props) {
   const { currentUser, doneOnetimeSetup } = useContext(AuthContext);
@@ -34,7 +37,6 @@ export default function LoginMenuButton(props) {
         ></Avatar>
       </Button>
       <Menu
-        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
@@ -46,6 +48,9 @@ export default function LoginMenuButton(props) {
             history.push("/profile");
           }}
         >
+          <ListItemIcon>
+            <AccountCircleIcon />
+          </ListItemIcon>
           Profile
         </MenuItem>
         <MenuItem
@@ -54,6 +59,9 @@ export default function LoginMenuButton(props) {
             authHandling.auth().signOut();
           }}
         >
+          <ListItemIcon>
+            <MeetingRoomIcon />
+          </ListItemIcon>
           Logout
         </MenuItem>
       </Menu>

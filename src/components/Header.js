@@ -17,7 +17,7 @@ export default function Header(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar variant="dense">
+        <Toolbar className={classes.toolbar} variant="dense">
           <div className={classes.container}>
             <img
               className={classes.img} //styling
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
   container: {
     display: "flex",
-    columnGap: "0.5em",
+    columnGap: "0.7em",
     position: "relative",
     alignItems: "center",
     flexGrow: 1,
@@ -58,9 +58,15 @@ const useStyles = makeStyles((theme) => ({
 
   img: {
     maxHeight: "inherit",
+    marginLeft: theme.spacing(1),
   },
 
   title: {
     maxHeight: "inherit",
+    fontFamily: "Carter One",
+  },
+  toolbar: {
+    backgroundImage:
+      "linear-gradient(90deg, rgba(234,90,122,1) 0%, rgba(222,121,30,1) 60%, rgba(226,196,41,1) 100%)",
   },
 }));

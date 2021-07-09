@@ -1,62 +1,53 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import { ButtonBase } from '@material-ui/core';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import clsx from 'clsx';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { ButtonBase } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import clsx from "clsx";
 
 const useStyles = makeStyles((themes) => ({
-    root: {
-        flexGrow:1,
-    },
+  root: {
+    flexGrow: 1,
+  },
 
-    button: {
-        width: '100%',
-        margin: '0 auto',
+  button: {
+    width: "100%",
+    margin: "0 auto",
+  },
 
-    },
+  /* Styles applied to CardContent if `disablePadding={true}`. */
+  padding: {
+    padding: 0,
+  },
 
-    /* Styles applied to CardContent if `disablePadding={true}`. */
-    padding: {
-        padding: 0,
-    },
-
-    content: {
-        alignContent: 'center',
-        width: '100%',    //to make cardcontent span the whole buttonbase 
-        margin: '0 auto',
-
-    },
+  content: {
+    alignContent: "center",
+    width: "100%", //to make cardcontent span the whole buttonbase
+    margin: "0 auto",
+  },
 }));
 
 export default function SimpleCard(props) {
+  const { disablePadding = false } = props;
 
-    const { 
-        disablePadding=false,
-    } = props;
+  const classes = useStyles();
+  const history = useHistory();
 
-    const classes = useStyles();
-    const history = useHistory();
+  // short timeout to let users experience animation effect when pressing the button
+  const navigateTo = () => setTimeout(() => history.push(props.URL), 50);
 
-    //short timeout to let users experience animation effect when pressing the button
-    const navigateTo = () => setTimeout(() => history.push(props.URL), 50)
-
-    return (
-        <Card className={classes.root}>
-            <ButtonBase 
-                className={classes.button}
-                onClick={navigateTo}
-                >
-                <CardContent className={ clsx(
-                    classes.content, 
-                    {
-                        [classes.padding]: disablePadding,
-                    },
-                ) }>
-                    {props.children}
-                </CardContent>
-            </ButtonBase>
-        </Card>
-    );
+  return (
+    <Card className={classes.root}>
+      <ButtonBase className={classes.button} onClick={navigateTo}>
+        <CardContent
+          className={clsx(classes.content, {
+            [classes.padding]: disablePadding,
+          })}
+        >
+          {props.children}
+        </CardContent>
+      </ButtonBase>
+    </Card>
+  );
 }
