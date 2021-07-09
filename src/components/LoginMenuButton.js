@@ -72,7 +72,7 @@ export default function LoginMenuButton(props) {
   const loggedOutVariant = (
     <div>
       <Button
-        color={props.color}
+        color="#007FFF"
         aria-controls="simple-menu"
         aria-haspopup="true"
         href="./signin"

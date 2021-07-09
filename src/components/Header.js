@@ -4,12 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import LoginMenuButton from "./LoginMenuButton.js";
 
-/**
- * Header bar component for webapp.
- *
- * props.children: element to be displayed in the header bar
- */
-export default function Header(props) {
+export default function Header() {
   const classes = useStyles();
   const history = useHistory();
   const navigateTo = () => history.push("/");
@@ -59,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
   img: {
     maxHeight: "inherit",
     marginLeft: theme.spacing(1),
+    cursor: "pointer",
   },
 
   title: {

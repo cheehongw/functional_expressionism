@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     marginBottom: theme.spacing(2),
+    cursor: "pointer",
   },
   google: {
     marginTop: theme.spacing(2),
