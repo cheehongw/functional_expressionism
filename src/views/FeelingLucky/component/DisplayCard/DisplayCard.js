@@ -1,34 +1,29 @@
-import { useState } from "react";
-import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Rating from "@material-ui/lab/Rating";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import { useStyles } from "./DisplayCard.component.style";
+import { Textfit } from "react-textfit";
 
 export default function DisplayCard(props) {
   const { dishData } = props;
   const classes = useStyles();
-  const [expanded, setExpanded] = useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <Card className={classes.root}>
       <CardMedia className={classes.media} image={dishData.dishImageLink} />
-      <CardContent>
-        <Typography variant="h6" component="h1">
+      <CardContent className={classes.content}>
+        <Textfit
+          className={classes.dishName}
+          mode="single"
+          onReady={console.log("rdy")}
+        >
           {dishData.dishName}
-        </Typography>
-        <Typography variant="subtitle1">
+        </Textfit>
+        <Typography className={classes.location} variant="subtitle1">
           {dishData.stall}, {dishData.location}
         </Typography>
       </CardContent>
@@ -44,24 +39,7 @@ export default function DisplayCard(props) {
           <AttachMoneyIcon className={classes.linkIcon} />
           {dishData.price}
         </Typography>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
       </CardActions>
-
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography variant="h4">Reviews</Typography>
-          <Typography variant="body1">Placeholder</Typography>
-        </CardContent>
-      </Collapse>
     </Card>
   );
 }

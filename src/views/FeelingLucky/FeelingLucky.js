@@ -13,7 +13,7 @@ import { ReactComponent as SadIcon } from "../../assets/sad.svg";
 
 const INITIAL_CARDS_STATE = [
   {
-    dishName: "Fried rice with smoked duck",
+    dishName: "Spaghetti with meatballs and parmesan",
     dishImageLink: "https://i.imgur.com/DAZyILR.jpg",
     stall: "Mixed vegetable rice",
     location: "YIH",
