@@ -1,5 +1,6 @@
 .title {
   display: flex;
+  flex-direction: column;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -8,13 +9,17 @@
 }
 
 .text {
-  font-family: "Montserrat", "Roboto", "Helvetica", "Arial", sans-serif;
-  font-weight: 300;
+  font-family: "Caveat Brush", cursive;
+  font-weight: 500;
   line-height: 1.167;
-  letter-spacing: -0.01562em;
-  font-size: 4rem;
-  color: #e5562c;
+  font-size: 5rem;
+  color: #fe3c72;
   user-select: none;
+  margin: 0px;
+}
+
+.text span {
+  color: #424242;
 }
 
 .options {
@@ -37,6 +42,7 @@
 .cardContent {
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
   flex-direction: column-reverse;
 }
@@ -46,6 +52,23 @@
   width: auto;
 }
 
+.subtitle {
+  color: #ea801e;
+  margin: 0;
+  font-family: "Merriweather Sans", sans-serif;
+}
+
+.subtitle .nus {
+  color: #003e7c;
+}
+
+.subtitle .tinder {
+  color: #fe3c72;
+}
+
+.subtitle .text1 {
+  color: white;
+}
 @media only screen and (min-width: 500px) {
   .options {
     flex-direction: row;

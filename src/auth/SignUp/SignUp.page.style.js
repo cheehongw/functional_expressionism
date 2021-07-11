@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     marginBottom: theme.spacing(2),
+    cursor: "pointer",
   },
   google: {
     marginTop: theme.spacing(2),
@@ -20,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   email: {
     marginTop: theme.spacing(0.6),
+    backgroundColor: "#3f8cb5",
+    color: "#fafafa",
   },
   form: {
     width: "100%",

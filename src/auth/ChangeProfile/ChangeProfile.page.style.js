@@ -24,6 +24,13 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     marginTop: theme.spacing(1),
   },
+  form2: {
+    width: "90%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: theme.spacing(1),
+  },
   paper: {
     marginTop: theme.spacing(5),
     display: "flex",
@@ -41,5 +48,9 @@ export const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginTop: theme.spacing(2),
+  },
+  browsebtn: {
+    backgroundColor: "#3f8cb5",
+    color: "#fafafa",
   },
 }));

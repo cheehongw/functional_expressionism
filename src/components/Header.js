@@ -4,12 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import LoginMenuButton from "./LoginMenuButton.js";
 
-/**
- * Header bar component for webapp.
- *
- * props.children: element to be displayed in the header bar
- */
-export default function Header(props) {
+export default function Header() {
   const classes = useStyles();
   const history = useHistory();
   const navigateTo = () => history.push("/");
@@ -17,7 +12,7 @@ export default function Header(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar variant="dense">
+        <Toolbar className={classes.toolbar} variant="dense">
           <div className={classes.container}>
             <img
               className={classes.img} //styling
@@ -48,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
   container: {
     display: "flex",
-    columnGap: "0.5em",
+    columnGap: "0.7em",
     position: "relative",
     alignItems: "center",
     flexGrow: 1,
@@ -58,9 +53,16 @@ const useStyles = makeStyles((theme) => ({
 
   img: {
     maxHeight: "inherit",
+    marginLeft: theme.spacing(1),
+    cursor: "pointer",
   },
 
   title: {
     maxHeight: "inherit",
+    fontFamily: "Carter One",
+  },
+  toolbar: {
+    backgroundImage:
+      "linear-gradient(90deg, rgba(234,90,122,1) 0%, rgba(222,121,30,1) 60%, rgba(226,196,41,1) 100%)",
   },
 }));
