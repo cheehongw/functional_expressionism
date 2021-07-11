@@ -188,7 +188,6 @@ function Login({ history }) {
             type="submit"
             fullWidth
             variant="contained"
-            color="secondary"
           >
             SIGN IN WITH EMAIL
           </Button>

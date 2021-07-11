@@ -112,14 +112,22 @@ function ChangeProfile({ history }) {
             <Alert severity="error">
               <AlertTitle>{fileError}</AlertTitle>
               <label htmlFor="contained-button-file">
-                <Button variant="contained" color="secondary" component="span">
+                <Button
+                  className={classes.browsebtn}
+                  variant="contained"
+                  component="span"
+                >
                   Browse Files
                 </Button>
               </label>
             </Alert>
           ) : (
             <label htmlFor="contained-button-file">
-              <Button variant="contained" color="secondary" component="span">
+              <Button
+                className={classes.browsebtn}
+                variant="contained"
+                component="span"
+              >
                 Browse Files
               </Button>
             </label>
@@ -128,7 +136,6 @@ function ChangeProfile({ history }) {
           <Button
             className={classes.submit1}
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
           >
@@ -138,7 +145,7 @@ function ChangeProfile({ history }) {
         <Typography className={classes.usernametext} variant="h5">
           or change the username
         </Typography>
-        <form onSubmit={onSubmitUsername}>
+        <form className={classes.form2} onSubmit={onSubmitUsername}>
           {usernameError ? (
             <TextField
               error
@@ -165,9 +172,9 @@ function ChangeProfile({ history }) {
           <Button
             className={classes.submit}
             type="submit"
-            fullWidth
             variant="contained"
             color="primary"
+            fullWidth
           >
             Apply username change
           </Button>

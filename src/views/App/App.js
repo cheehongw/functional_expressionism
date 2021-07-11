@@ -4,7 +4,7 @@ import ClickableCard from "../../components/ClickableCard.js";
 import styles from "./App.module.css";
 import { makeStyles, Typography } from "@material-ui/core";
 import { ReactComponent as StallIcon } from "../../assets/food-stall.svg";
-import { ReactComponent as Clover } from "../../assets/clover.svg";
+import { ReactComponent as Idea } from "../../assets/idea.svg";
 
 export default function App() {
   const classes = useStyles();
@@ -44,9 +44,9 @@ export default function App() {
         <ClickableCard URL="/suggestions">
           <div className={styles.cardContent}>
             <Typography className={classes.cardText} variant="h6">
-              I'm feeling lucky
+              Suggestions
             </Typography>
-            <Clover className={styles.icon} />
+            <Idea className={styles.icon} />
           </div>
         </ClickableCard>
       </div>

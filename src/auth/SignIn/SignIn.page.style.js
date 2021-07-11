@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   email: {
+    backgroundColor: "#3f8cb5",
+    color: "#fafafa",
     marginTop: theme.spacing(0.5),
   },
   form: {

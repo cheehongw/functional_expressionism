@@ -143,7 +143,6 @@ function SignUp({ history }) {
             type="submit"
             fullWidth
             variant="contained"
-            color="secondary"
           >
             CREATE AN ACCOUNT WITH EMAIL
           </Button>
