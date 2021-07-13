@@ -47,8 +47,11 @@ export default function LocationItem(props) {
     return (
         <ListItem>
             <ClickableCard disablePadding={true}
-                onClick={() => 
-                    setTimeout(() => history.push(`/locations/${_id}`), 50) }>
+                onClick={() =>
+                    setTimeout(() => history.push({
+                        pathname: `/locations/${_id}`,
+                        state: props.locationObj
+                    }), 50)}>
 
                 {/* <------- start of card content ------> */}
                 <div className={styles.div}>
