@@ -28,7 +28,8 @@ const Routes = () => {
 
             <Route path="/locations" component={LocationRouter} />
 
-            <Route exact path="/stalls" component={Stalls} />
+            <Route path="/stall/:StallID" component={Stalls} />
+
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/forgot" component={ForgotPassword} />

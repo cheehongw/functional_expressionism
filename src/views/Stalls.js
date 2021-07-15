@@ -1,3 +1,8 @@
+/**
+ * Viewpage for any given stall.
+ * 
+ * Displays detailed information about a particular stall.
+ */
 import React from "react";
 import Header  from '../components/Header.js';
 

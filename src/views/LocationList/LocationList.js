@@ -11,8 +11,9 @@ const geo = navigator.geolocation;
 const LocationList = () => {
   const [locationList, setLocationList] = useState();
   //used to determine the display state of toolTip
+  const [isLoaded, setIsLoaded] = useState(false);
   const [sortingBy, setSortingBy] = useState("Alphabetical");
-  const [currPos, setCurrPos] = useState();
+  const [currPos, setCurrPos] = useState([]);
 
   useEffect(() => {
     fetch('https://functional-expressionism-api.herokuapp.com/locations')
@@ -21,11 +22,12 @@ const LocationList = () => {
       .then(
         result => {
           setLocationList(result);
+          setIsLoaded(true);
         })
   }, []);
 
   useEffect(() => {
-    if (locationList === undefined) {
+    if (!isLoaded) {
       
     } else if (sortingBy === "Distance") {
       geo.getCurrentPosition((pos) => {
@@ -54,7 +56,7 @@ const LocationList = () => {
         })
       );
     }
-  }, [sortingBy]);
+  }, [isLoaded, sortingBy]);
 
   return (
     <div>
@@ -66,7 +68,7 @@ const LocationList = () => {
       />
 
       <List disablePadding={true} >
-        {locationList === undefined
+        {!isLoaded
           ? <div className={styles.loading}>
             <CircularProgress size={'4rem'}></CircularProgress>
             <Typography variant={"h4"}> Fetching data... </Typography>
