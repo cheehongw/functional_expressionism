@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, useRouteMatch } from "react-router-dom";
 import App from "./views/App/App.js";
 import LocationList from "./views/LocationList/LocationList.js";
 import StallList from "./views/StallList/StallList.js";
-import Stalls from "./views/Stalls.js";
+import Stall from "./views/Stall/Stall.js";
 import NotFound from "./views/NotFound";
 import { CssBaseline } from "@material-ui/core";
 import { AuthProvider } from "./auth/use-auth.js";
@@ -28,7 +28,7 @@ const Routes = () => {
 
             <Route path="/locations" component={LocationRouter} />
 
-            <Route path="/stall/:StallID" component={Stalls} />
+            <Route path="/stall/:StallID" component={Stall} />
 
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />

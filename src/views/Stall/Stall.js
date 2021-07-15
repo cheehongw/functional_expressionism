@@ -4,9 +4,9 @@
  * Displays detailed information about a particular stall.
  */
 import React from "react";
-import Header  from '../components/Header.js';
+import Header  from '../../components/Header.js';
 
-const Stalls = () => {
+const Stall = () => {
   return (
     <div className="LocationList">
     <Header> TinFood </Header>
@@ -15,4 +15,4 @@ const Stalls = () => {
   );
 };
 
-export default Stalls;
+export default Stall;
