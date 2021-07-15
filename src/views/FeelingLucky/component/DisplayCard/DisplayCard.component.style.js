@@ -34,14 +34,21 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: "row",
     verticalAlign: "middle",
     justifyContent: "space-around",
+    paddingLeft: theme.spacing(0),
+    paddingRight: theme.spacing(0),
   },
   dishName: {
     fontFamily: "Caveat",
+    fontWeight: 700,
   },
   location: {
-    fontFamily: "Architects Daughter",
+    fontFamily: "Caveat",
+    fontWeight: 500,
   },
   content: {
-    paddingBottom: theme.spacing(0.5),
+    paddingBottom: theme.spacing(0),
+    paddingLeft: theme.spacing(1.5),
+    paddingRight: theme.spacing(1.5),
+    paddingTop: theme.spacing(1.5),
   },
 }));
