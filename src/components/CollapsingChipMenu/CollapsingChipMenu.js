@@ -4,20 +4,23 @@ import styles from './CollapsingChipMenu.module.css';
 
 export default function CollapsingChipMenu(props) {
 
+    //List of sorting options
     const selector = props.selector;
 
-    //Collapse's state
+    //collapsed state
     const [open, setOpen] = useState(false);
-    //Base component's display state
+    //Base button's display state
     const [base, setBase] = useState('Sort By');
 
-    const fireAfterClose = useRef('Sort By');
+    const onClose = useRef('Sort By');
 
     const toggleCollaspe = () => { setOpen(!open) }
 
     const handleSelection = (setting) => { 
+        
+        //props.childData is a function passed in from the parent to set the parent's state.
         props.childData(setting);
-        fireAfterClose.current = setting;
+        onClose.current = setting;
     };
 
     return (
@@ -26,7 +29,7 @@ export default function CollapsingChipMenu(props) {
         onClick={toggleCollaspe} 
         label={<Typography> {base} </Typography>} />
         <Collapse className={styles.collapse}
-        in={open} onExiting={() => setBase(fireAfterClose.current)}>
+        in={open} onExiting={() => setBase(onClose.current)}>
             <List>
                 {selector.map((i) => (
                 <ListItem key={i}>

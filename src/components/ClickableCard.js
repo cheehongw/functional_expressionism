@@ -28,26 +28,35 @@ const useStyles = makeStyles((themes) => ({
   },
 }));
 
-export default function SimpleCard(props) {
-  const { disablePadding = false } = props;
+export default function ClickableCard(props) {
 
-  const classes = useStyles();
-  const history = useHistory();
+    const { 
+        disablePadding=false,
+        URL = '/',
+        onClick = () => {},
+    } = props;
 
-  // short timeout to let users experience animation effect when pressing the button
-  const navigateTo = () => setTimeout(() => history.push(props.URL), 50);
+    const classes = useStyles();
+    const history = useHistory();
 
-  return (
-    <Card className={classes.root}>
-      <ButtonBase className={classes.button} onClick={navigateTo}>
-        <CardContent
-          className={clsx(classes.content, {
-            [classes.padding]: disablePadding,
-          })}
-        >
-          {props.children}
-        </CardContent>
-      </ButtonBase>
-    </Card>
-  );
+    //short timeout to let users experience animation effect when pressing the button
+    const navigateTo = () => setTimeout(() => history.push(URL), 50)
+
+    return (
+        <Card className={classes.root}>
+            <ButtonBase 
+                className={classes.button}
+                onClick={props.onClick === undefined ? navigateTo : onClick}
+                >
+                <CardContent className={ clsx(
+                    classes.content, 
+                    {
+                        [classes.padding]: disablePadding,
+                    },
+                ) }>
+                    {props.children}
+                </CardContent>
+            </ButtonBase>
+        </Card>
+    );
 }

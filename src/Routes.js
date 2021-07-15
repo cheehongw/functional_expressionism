@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, useRouteMatch } from "react-router-dom";
 import App from "./views/App/App.js";
 import LocationList from "./views/LocationList/LocationList.js";
+import StallList from "./views/StallList/StallList.js";
 import Stalls from "./views/Stalls.js";
 import NotFound from "./views/NotFound";
 import { CssBaseline } from "@material-ui/core";
@@ -24,27 +25,17 @@ const Routes = () => {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={App} />
-            <Route exact path="/locations" component={LocationList} />
-            <Route exact path="/stalls" component={Stalls} />
+
+            <Route path="/locations" component={LocationRouter} />
+
+            <Route path="/stall/:StallID" component={Stalls} />
+
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/forgot" component={ForgotPassword} />
-            <PrivateRoute exact path="/profile" component={Profile} />
-            <PrivateRoute
-              exact
-              path="/profile/passwordchange"
-              component={ChangePassword}
-            />
-            <PrivateRoute
-              exact
-              path="/profile/profilechange"
-              component={ChangeProfile}
-            />
-            <PrivateRoute
-              exact
-              path="/profile/accountdelete"
-              component={DeleteAccount}
-            />
+            
+            <Route path="/profile" component={ProfileRouter} />
+
             <Route exact path="/onetimesetup" component={OnetimeSetup} />
             <Route exact path="/suggestions" component={FeelingLucky} />
             <Route component={NotFound} />
@@ -54,5 +45,31 @@ const Routes = () => {
     </CssBaseline>
   );
 };
+
+function LocationRouter() {
+  let match = useRouteMatch();
+
+  return (
+    <>
+      <Route exact path={`${match.url}`} component={LocationList} />
+      <Route path={`${match.url}/:LocationID`} component={StallList} />
+    </>
+  )
+
+}
+
+
+function ProfileRouter() {
+  let match = useRouteMatch();
+
+  return (
+    <>
+      <PrivateRoute exact path={`${match.url}/`} component={Profile} />
+      <PrivateRoute exact path={`${match.url}/passwordchange`} component={ChangePassword} />
+      <PrivateRoute exact path={`${match.url}/profilechange`} component={ChangeProfile} />
+      <PrivateRoute exact path={`${match.url}/accountdelete`} component={DeleteAccount} />
+    </>
+  )
+}
 
 export default Routes;

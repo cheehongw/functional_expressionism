@@ -1,0 +1,42 @@
+.header {
+    display: grid;
+    grid-template-columns: auto 100px;
+    padding: 1rem 1rem 0px 1rem;
+}
+
+.item_a {
+    margin: 0;
+    grid-column: 1/2;
+
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    letter-spacing: 0.015625rem;
+    opacity: 0.6;
+}
+
+.item_b {
+    margin: 0;
+    font-size: x-large;
+    letter-spacing: 0.01125rem;
+    line-height: 1.5rem;
+
+    grid-column: 1/2;
+}
+
+.icon {
+    grid-row: 1/3;
+    grid-column: 2/3;
+    height: 4rem;
+    justify-self: end;
+
+}
+
+.loading {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh
+
+}
