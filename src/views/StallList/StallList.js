@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { StallItem } from "./StallItem";
 import { CircularProgress, List, Typography } from '@material-ui/core';
 import Header from '../../components/Header.js';
@@ -17,7 +17,11 @@ export default function StallList(props) {
   //props.location refers to the location object from react-router-dom
   const locationObj = props.location.state;
 
-  const { LocationID } = useParams();
+  const history = useHistory();
+
+  const LocationID = locationObj === undefined 
+    ? history.push('/unknown')
+    : locationObj._id;
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [stallList, setStallList] = useState([]);
@@ -25,11 +29,12 @@ export default function StallList(props) {
 
   useEffect(() => {
     fetch(`https://functional-expressionism-api.herokuapp.com/locations/${LocationID}/stalls`)
-      .then(res => res.json())
+      .then(res => res.ok ? res.json() : new Error('Not OK'))
       .then(res => { 
         setStallList(res);
         setIsLoaded(true);
       })
+      .catch(err => console.log(err))
   }, [LocationID]);
 
   useEffect(() => {
@@ -55,7 +60,7 @@ export default function StallList(props) {
       <Header> TinFood </Header>
       <div className={styles.header}>
         <p className={styles.item_a}> Here are the stalls at </p>
-        <p className={styles.item_b}> {locationObj.locationName} </p>
+        <p className={styles.item_b}> {locationObj?.locationName} </p>
         <MapIcon className={styles.icon} />
       </div>
 
