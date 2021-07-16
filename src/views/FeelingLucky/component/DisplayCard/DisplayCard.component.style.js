@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     flexDirection: "column",
     display: "flex",
+    borderRadius: "18px",
   },
   media: {
     height: 0,

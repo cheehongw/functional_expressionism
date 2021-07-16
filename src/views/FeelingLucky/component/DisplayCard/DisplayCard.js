@@ -105,17 +105,33 @@ export default function DisplayCard(props) {
       <CardActions className={classes.actions}>
         <Rating
           name="size-large"
-          value={dishData.rating === null ? 0 : dishData.rating}
+          value={dishData.rating === null ? 5 : dishData.rating}
           precision={0.1}
           readOnly
         />
         <Typography variant="h6" className={classes.wrapIcon}>
           <AttachMoneyIcon className={classes.linkIcon} />
-          {dishData.price.public}
+          {dishData.price.price !== undefined
+            ? dishData.price.price
+            : dishData.price.student !== undefined
+            ? dishData.price.student
+            : dishData.price.public}
         </Typography>
       </CardActions>
     </Card>
   ) : (
-    <Typography></Typography>
+    <Card className={classes.root}>
+      <CardMedia
+        className={classes.media}
+        image={
+          "https://i.kym-cdn.com/photos/images/newsfeed/001/668/803/f75.jpg"
+        }
+      />
+      <CardContent className={classes.content}>
+        <Typography className={classes.dishName} variant="h3">
+          Loading
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
