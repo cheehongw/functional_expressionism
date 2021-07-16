@@ -1,14 +1,11 @@
-import { Button, IconButton, Popover } from "@material-ui/core";
+import { Button, Popover } from "@material-ui/core";
 import { StylesProvider } from "@material-ui/core/styles";
 import { Rating } from '@material-ui/lab';
-import { green, red } from '@material-ui/core/colors';
-import CheckIcon from '@material-ui/icons/Check';
-import CloseIcon from '@material-ui/icons/Close';
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import styles from './PreviewCard.module.css'
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { StatusIcons } from '../../../components/StatusIcons';
+import { LikeButton } from '../../../components/LikeButton';
 
 /**
  * The preview card of a stall.
@@ -20,11 +17,10 @@ export default function PreviewCard(props) {
     open = false,
     onClose,
     locationObj,
+    stallObj,
   } = props
 
-  const { stallObj } = props;
-
-   //import user's favourite state here
+  //import user's favourite state here
   const [favouriteState, setFavouriteState] = useState(false);
   const history = useHistory();
 
@@ -39,11 +35,10 @@ export default function PreviewCard(props) {
           <p className={styles.desc}> {stallObj.desc ? stallObj.desc : `@${locationObj.locationName}`} </p>
         </div>
 
-        <IconButton className={styles.heart} onClick={()=>{setFavouriteState(!favouriteState)}}>
-          {favouriteState 
-          ? <FavoriteIcon className={styles.heart} style={{fontSize: '1.875rem', color: red[500]}} />
-          : <FavoriteBorderIcon className={styles.heart} style={{fontSize: '1.875rem'}} /> }
-        </IconButton>
+        <LikeButton className={styles.heart} 
+          favouriteState={favouriteState} 
+          onClick={() => { setFavouriteState(!favouriteState) }} 
+        />
 
         <img className={styles.img} src={stallObj.stallImage} alt={stallObj.stallName} />
         <Rating className={styles.rating} value={stallObj.rating} precision={0.1} size='small' readOnly />
@@ -58,7 +53,10 @@ export default function PreviewCard(props) {
           onClick={() => {
             history.push({
               pathname: `/stall/${stallObj._id}`,
-              state: props.locationObj
+              state: {
+                locationObj: locationObj,
+                stallObj: stallObj
+              }
             })
           }}
         >View Menu</Button>
@@ -81,14 +79,4 @@ const StatusItem = (props) => {
     </li>
 
   )
-}
-
-const StatusIcons = (status) => {
-  if (status === null || status === undefined) {
-    return 'Unknown/Info missing'
-  } else if (status) {
-    return <CheckIcon style={{ color: green[500] }} />
-  } else if (!status) {
-    return <CloseIcon style={{ color: red[500] }} />
-  }
 }

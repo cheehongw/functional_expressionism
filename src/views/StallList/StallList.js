@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { StallItem } from "./StallItem";
 import { CircularProgress, List, Typography } from '@material-ui/core';
 import Header from '../../components/Header.js';
