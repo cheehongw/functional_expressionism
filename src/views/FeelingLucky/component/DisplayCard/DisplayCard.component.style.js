@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "300px",
+    width: "300px",
     justifyContent: "center",
     flexDirection: "column",
     display: "flex",
@@ -23,14 +23,32 @@ export const useStyles = makeStyles((theme) => ({
   },
   wrapIcon: {
     display: "inline-flex",
+    fontFamily: "Pacifico",
+    fontSize: "1.5rem",
   },
   linkIcon: {
     color: "#30800D",
-    marginTop: "3px",
+    marginTop: theme.spacing(1.3),
   },
   actions: {
     flexDirection: "row",
     verticalAlign: "middle",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    paddingLeft: theme.spacing(0),
+    paddingRight: theme.spacing(0),
+  },
+  dishName: {
+    fontFamily: "Caveat",
+    fontWeight: 700,
+  },
+  location: {
+    fontFamily: "Caveat",
+    fontWeight: 500,
+  },
+  content: {
+    paddingBottom: theme.spacing(0),
+    paddingLeft: theme.spacing(1.5),
+    paddingRight: theme.spacing(1.5),
+    paddingTop: theme.spacing(1.5),
   },
 }));
