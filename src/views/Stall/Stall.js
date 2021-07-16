@@ -31,7 +31,7 @@ function Stall(props) {
   const [isMenuLoaded, setIsMenuLoaded] = useState(false)
 
   useEffect(() => {
-    fetch(`http://functional-expressionism-api.herokuapp.com/stalls/${stallObj._id}/menu`)
+    fetch(`https://functional-expressionism-api.herokuapp.com/stalls/${stallObj._id}/menu`)
       .then(res => res.ok ? res.json() : new Error('Not OK'))
       .then(res => {
         setMenu(res);
