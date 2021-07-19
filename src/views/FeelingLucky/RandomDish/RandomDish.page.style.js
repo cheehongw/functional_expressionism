@@ -15,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     marginTop: theme.spacing(1),
-    height: "15vh",
-    width: "15vh",
+    height: "10vh",
+    width: "10vh",
   },
   status: {
     marginBottom: theme.spacing(1),
@@ -29,6 +29,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     height: "50vh",
+  },
+  statusContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
   },
 }));
 

@@ -14,7 +14,7 @@ function FeelingLucky() {
       <Header />
       <div className={classes.title}>
         <Typography className={classes.text} component="h1">
-          Pick a suggestion mode
+          Suggestion modes
         </Typography>
       </div>
       <div className={matches ? classes.laptopOptions : classes.options}>
@@ -30,7 +30,7 @@ function FeelingLucky() {
         <ClickableCard URL="/suggestions">
           <div className={classes.cardContent}>
             <Typography className={classes.cardText} variant="h6">
-              Suggestions
+              Our top picks
             </Typography>
             <DeliciousIcon className={classes.icon} />
           </div>

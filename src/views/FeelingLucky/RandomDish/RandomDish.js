@@ -71,24 +71,30 @@ function RandomDish() {
           ) : (
             <SadIcon className={classes.icon} />
           )}
+          <div className={classes.statusContainer}>
+            {cards.length > 1 ? (
+              <Typography
+                component="h1"
+                variant="h4"
+                className={classes.status}
+              >
+                Our random suggestions!
+              </Typography>
+            ) : finalDecision === null ? (
+              <Typography component="h1" variant="h4">
+                Your dish for today?
+              </Typography>
+            ) : finalDecision ? (
+              <Typography component="h1" variant="h4">
+                Bon Appétit
+              </Typography>
+            ) : (
+              <Typography component="h1" variant="h4">
+                We have no suggestion left
+              </Typography>
+            )}
+          </div>
 
-          {cards.length > 1 ? (
-            <Typography component="h1" variant="h4" className={classes.status}>
-              Our suggestions!
-            </Typography>
-          ) : finalDecision === null ? (
-            <Typography component="h1" variant="h4">
-              Your dish for today?
-            </Typography>
-          ) : finalDecision ? (
-            <Typography component="h1" variant="h4">
-              Bon Appétit
-            </Typography>
-          ) : (
-            <Typography component="h1" variant="h4">
-              We have no suggestion left
-            </Typography>
-          )}
           {cards.length > 1 ? (
             <TinderCard
               className={classes.swipe}
