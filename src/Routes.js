@@ -39,11 +39,7 @@ const Routes = () => {
 
             <Route exact path="/onetimesetup" component={OnetimeSetup} />
             <Route exact path="/suggestions" component={FeelingLucky} />
-            <Route
-              exact
-              path="/suggestions/randomdish"
-              component={RandomDish}
-            />
+            <Route exact path="/suggestions/random" component={RandomDish} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>

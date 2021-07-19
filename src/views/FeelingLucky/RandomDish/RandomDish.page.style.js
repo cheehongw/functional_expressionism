@@ -15,11 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     marginTop: theme.spacing(1),
-    height: theme.spacing(13),
-    width: theme.spacing(13),
+    height: "15vh",
+    width: "15vh",
   },
   status: {
     marginBottom: theme.spacing(1),
+    fontFamily: "Merriweather Sans",
+    fontSize: "2em",
   },
   loading: {
     display: "flex",

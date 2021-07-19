@@ -73,19 +73,19 @@ function RandomDish() {
           )}
 
           {cards.length > 1 ? (
-            <Typography component="h1" variant="h5" className={classes.status}>
+            <Typography component="h1" variant="h4" className={classes.status}>
               Our suggestions!
             </Typography>
           ) : finalDecision === null ? (
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h4">
               Your dish for today?
             </Typography>
           ) : finalDecision ? (
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h4">
               Bon Appétit
             </Typography>
           ) : (
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h4">
               We have no suggestion left
             </Typography>
           )}
