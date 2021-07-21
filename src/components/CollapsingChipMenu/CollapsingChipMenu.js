@@ -1,4 +1,8 @@
 import { Chip, Collapse, List, ListItem, Typography } from "@material-ui/core";
+import { ReactComponent as RatingIcon } from "../../assets/star.svg";
+import { ReactComponent as DistanceIcon } from "../../assets/distance.svg";
+import { ReactComponent as AlphabetIcon } from "../../assets/abc.svg";
+import { ReactComponent as PriceIcon } from "../../assets/money.svg";
 import { useRef, useState } from "react";
 import styles from "./CollapsingChipMenu.module.css";
 
@@ -41,6 +45,17 @@ export default function CollapsingChipMenu(props) {
                 className={styles.selectors}
                 onClick={() => handleSelection(i)}
                 label={<Typography> {i} </Typography>}
+                icon={
+                  i === "Rating" ? (
+                    <RatingIcon className={styles.icon} />
+                  ) : i === "Alphabetical" ? (
+                    <AlphabetIcon className={styles.icon} />
+                  ) : i === "Distance" ? (
+                    <DistanceIcon className={styles.icon} />
+                  ) : (
+                    <PriceIcon className={styles.icon} />
+                  )
+                }
               />
             </ListItem>
           ))}
