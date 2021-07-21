@@ -1,131 +1,41 @@
-import { useState, useEffect } from "react";
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import DisplayButton from "./component/DisplayButton/DisplayButton";
-import DisplayCard from "./component/DisplayCard/DisplayCard";
-import useStyles from "./FeelingLucky.page.style";
-import { Container } from "@material-ui/core";
-import TinderCard from "react-tinder-card";
+import { Typography, useMediaQuery } from "@material-ui/core";
+import ClickableCard from "../../components/ClickableCard";
 import Header from "../../components/Header";
-import { ReactComponent as HealthyIcon } from "../../assets/healthy-eating.svg";
-import { ReactComponent as HappyIcon } from "../../assets/happy.svg";
-import { ReactComponent as SadIcon } from "../../assets/sad.svg";
+import { useStyles } from "./FeelingLucky.page.style";
+import { ReactComponent as DiceIcon } from "../../assets/dice.svg";
+import { ReactComponent as DeliciousIcon } from "../../assets/delicious.svg";
 
 function FeelingLucky() {
   const classes = useStyles();
+  const matches = useMediaQuery("(min-width:500px)");
 
-  const [cards, setCards] = useState([]);
-  const cardRef = React.createRef();
-  const [finalDecision, setFinalDecision] = useState(null);
-
-  async function fetchAPIData() {
-    const response = await fetch(
-      "https://functional-expressionism-api.herokuapp.com/dishes/random/?number=7&verbose=true"
-    );
-    const cardResponse = await response.json();
-    return cardResponse;
-  }
-
-  useEffect(() => {
-    fetchAPIData().then((result) => setCards(result));
-  }, []);
-
-  const normalSwipe = (dir, card) => {
-    var temp = cards;
-    if (dir === "right") {
-      temp.push(card);
-    }
-    setCards(temp.slice(1));
-  };
-
-  const finalSwipe = (dir) => {
-    if (dir === "right") {
-      setFinalDecision(true);
-    } else {
-      setFinalDecision(false);
-    }
-  };
-
-  const swipeLeftButton = () => {
-    cardRef.current.swipe("left");
-  };
-
-  const swipeRightButton = () => {
-    cardRef.current.swipe("right");
-  };
-
-  return cards.length === 0 ? (
-    <div>
-      <h1>Loading</h1>
-    </div>
-  ) : (
+  return (
     <div>
       <Header />
-      <Container component="main" maxWidth="xs">
-        <div className={classes.paper}>
-          {finalDecision === null ? (
-            <HealthyIcon className={classes.icon} />
-          ) : finalDecision ? (
-            <HappyIcon className={classes.icon} />
-          ) : (
-            <SadIcon className={classes.icon} />
-          )}
+      <div className={classes.title}>
+        <Typography className={classes.text} component="h1">
+          Suggestion modes
+        </Typography>
+      </div>
+      <div className={matches ? classes.laptopOptions : classes.options}>
+        <ClickableCard URL="/suggestions/random">
+          <div className={classes.cardContent}>
+            <Typography className={classes.cardText} variant="h6">
+              Random
+            </Typography>
+            <DiceIcon className={classes.icon} />
+          </div>
+        </ClickableCard>
 
-          {cards.length > 1 ? (
-            <Typography component="h1" variant="h5" className={classes.status}>
-              Our suggestions!
+        <ClickableCard URL="/suggestions">
+          <div className={classes.cardContent}>
+            <Typography className={classes.cardText} variant="h6">
+              Our top picks
             </Typography>
-          ) : finalDecision === null ? (
-            <Typography component="h1" variant="h5">
-              Your dish for today?
-            </Typography>
-          ) : finalDecision ? (
-            <Typography component="h1" variant="h5">
-              Bon Appétit
-            </Typography>
-          ) : (
-            <Typography component="h1" variant="h5">
-              We have no suggestion left
-            </Typography>
-          )}
-          {cards.length > 1 ? (
-            <TinderCard
-              className={classes.swipe}
-              preventSwipe={["up", "down"]}
-              onCardLeftScreen={(dir) => normalSwipe(dir, cards[0])}
-              key={cards[0]._id}
-              ref={cardRef}
-            >
-              <DisplayCard dishData={cards[0]} />
-            </TinderCard>
-          ) : finalDecision === null ? (
-            <TinderCard
-              className={classes.swipe}
-              preventSwipe={["up", "down"]}
-              onCardLeftScreen={(dir) => finalSwipe(dir)}
-              key={cards[0]._id}
-              ref={cardRef}
-            >
-              <DisplayCard dishData={cards[0]} />
-            </TinderCard>
-          ) : finalDecision ? (
-            <DisplayCard dishData={cards[0]} />
-          ) : (
-            <img src="NoSuggestion.png" alt="Thinking cat" />
-          )}
-          {cards.length > 1 ? (
-            <DisplayButton left={swipeLeftButton} right={swipeRightButton} />
-          ) : finalDecision === null ? (
-            <DisplayButton left={swipeLeftButton} right={swipeRightButton} />
-          ) : finalDecision ? (
-            <Typography></Typography>
-          ) : (
-            <Typography variant="body1">
-              thinking of a better suggestion
-            </Typography>
-          )}
-        </div>
-      </Container>
+            <DeliciousIcon className={classes.icon} />
+          </div>
+        </ClickableCard>
+      </div>
     </div>
   );
 }

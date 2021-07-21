@@ -1,26 +1,46 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
+import background from "../../assets/suggestionbackground.jpg";
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    justifyContent: "center",
+export const useStyles = makeStyles((theme) => ({
+  title: {
+    backgroundImage: `url(${background})`,
+    backgroundPosition: "bottom",
+    height: "25vh",
+    display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    display: "flex",
+    justifyContent: "center",
+    textAlign: "center",
   },
-  swipeable: {
-    justifyContent: "center",
-    flexDirection: "column",
-    alignItems: "center",
+  text: {
+    fontFamily: "Merriweather Sans",
+    fontSize: "3em",
+    color: "white",
+  },
+  options: {
     display: "flex",
+    flexDirection: "column",
+    padding: "10px 15vw 10px",
+    gap: "10px",
+  },
+  laptopOptions: {
+    display: "flex",
+    flexDirection: "row",
+    padding: "10px 20vw 10px",
+    gap: "10px",
+  },
+  cardText: {
+    fontFamily: "Montserrat",
+  },
+  cardContent: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column-reverse",
   },
   icon: {
-    marginTop: theme.spacing(1),
-    height: theme.spacing(13),
-    width: theme.spacing(13),
-  },
-  status: {
-    marginBottom: theme.spacing(1),
+    height: "8rem",
+    width: "auto",
   },
 }));
-
-export default useStyles;

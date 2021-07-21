@@ -8,15 +8,17 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import { useStyles } from "./DisplayCard.component.style";
 import { Textfit } from "react-textfit";
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "@material-ui/core";
 
 export default function DisplayCard(props) {
   const { dishData } = props;
   const classes = useStyles();
   const [dishNameTextLines, setDishNameTextLines] = useState(null);
   const [location, setLocation] = useState(null);
+  const matches = useMediaQuery("(max-width: 640px)");
 
   const dishNameTextLinesHandler = (name) => {
-    if (name.length <= 32) {
+    if (name.length <= 33) {
       return [name];
     } else {
       let firstLine = "0";
@@ -62,7 +64,7 @@ export default function DisplayCard(props) {
   );
 
   return dishNameTextLines !== null && location !== null ? (
-    <Card className={classes.root}>
+    <Card className={matches ? classes.rootSmaller : classes.root}>
       <CardMedia
         className={classes.media}
         image={
@@ -72,7 +74,7 @@ export default function DisplayCard(props) {
         }
       />
       <CardContent className={classes.content}>
-        {dishNameTextLines[0].length <= 32 ? (
+        {dishNameTextLines[0].length <= 33 ? (
           <Typography className={classes.dishName} variant="h5" component="h1">
             {dishNameTextLines[0]}
           </Typography>
@@ -82,7 +84,7 @@ export default function DisplayCard(props) {
           </Textfit>
         )}
         {dishNameTextLines.length === 2 ? (
-          dishNameTextLines[1].length <= 32 ? (
+          dishNameTextLines[1].length <= 33 ? (
             <Typography
               className={classes.dishName}
               variant="h5"
@@ -105,17 +107,33 @@ export default function DisplayCard(props) {
       <CardActions className={classes.actions}>
         <Rating
           name="size-large"
-          value={dishData.rating === null ? 0 : dishData.rating}
+          value={dishData.rating === null ? 5 : dishData.rating}
           precision={0.1}
           readOnly
         />
         <Typography variant="h6" className={classes.wrapIcon}>
           <AttachMoneyIcon className={classes.linkIcon} />
-          {dishData.price.public}
+          {dishData.price.price !== undefined
+            ? dishData.price.price
+            : dishData.price.student !== undefined
+            ? dishData.price.student
+            : dishData.price.public}
         </Typography>
       </CardActions>
     </Card>
   ) : (
-    <Typography></Typography>
+    <Card className={classes.root}>
+      <CardMedia
+        className={classes.media}
+        image={
+          "https://i.kym-cdn.com/photos/images/newsfeed/001/668/803/f75.jpg"
+        }
+      />
+      <CardContent className={classes.content}>
+        <Typography className={classes.dishName} variant="h3">
+          Loading
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }

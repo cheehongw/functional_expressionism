@@ -17,6 +17,7 @@ import ChangePassword from "./auth/ChangePassword/ChangePassword.js";
 import ChangeProfile from "./auth/ChangeProfile/ChangeProfile.js";
 import DeleteAccount from "./auth/DeleteAccount/DeleteAccount.js";
 import FeelingLucky from "./views/FeelingLucky/FeelingLucky.js";
+import RandomDish from "./views/FeelingLucky/RandomDish/RandomDish.js";
 
 const Routes = () => {
   return (
@@ -33,11 +34,12 @@ const Routes = () => {
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/forgot" component={ForgotPassword} />
-            
+
             <Route path="/profile" component={ProfileRouter} />
 
             <Route exact path="/onetimesetup" component={OnetimeSetup} />
             <Route exact path="/suggestions" component={FeelingLucky} />
+            <Route exact path="/suggestions/random" component={RandomDish} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>
@@ -54,10 +56,8 @@ function LocationRouter() {
       <Route exact path={`${match.url}`} component={LocationList} />
       <Route path={`${match.url}/:LocationID`} component={StallList} />
     </>
-  )
-
+  );
 }
-
 
 function ProfileRouter() {
   let match = useRouteMatch();
@@ -65,11 +65,23 @@ function ProfileRouter() {
   return (
     <>
       <PrivateRoute exact path={`${match.url}/`} component={Profile} />
-      <PrivateRoute exact path={`${match.url}/passwordchange`} component={ChangePassword} />
-      <PrivateRoute exact path={`${match.url}/profilechange`} component={ChangeProfile} />
-      <PrivateRoute exact path={`${match.url}/accountdelete`} component={DeleteAccount} />
+      <PrivateRoute
+        exact
+        path={`${match.url}/passwordchange`}
+        component={ChangePassword}
+      />
+      <PrivateRoute
+        exact
+        path={`${match.url}/profilechange`}
+        component={ChangeProfile}
+      />
+      <PrivateRoute
+        exact
+        path={`${match.url}/accountdelete`}
+        component={DeleteAccount}
+      />
     </>
-  )
+  );
 }
 
 export default Routes;

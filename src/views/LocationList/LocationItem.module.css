@@ -1,49 +1,48 @@
 .div {
-    overflow: hidden;
-    position: relative;
-    height:12vh;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 7.5fr 2.5fr;
-    grid-template-rows: 6fr 4fr 10px;
+  overflow: hidden;
+  position: relative;
+  height: 12vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 7.5fr 2.5fr;
+  grid-template-rows: 6fr 4fr 10px;
 }
 
 .cardImage {
-    pointer-events: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    object-fit: cover;
-    left:0;
-    filter: opacity(0.5) 
-        drop-shadow(0px 4px 4px 
-            rgba(0, 0, 0, 0.25));
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  object-fit: cover;
+  left: 0;
+  filter: opacity(0.5) drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .name {
-    z-index: 1;
-    grid-column: 1/2;
-    grid-row: 1/4;
-    place-self: center center;
-
+  z-index: 1;
+  grid-column: 1/2;
+  grid-row: 1/4;
+  place-self: center center;
 }
 
+.name .locationName {
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: 400;
+}
 .toolTip {
-    z-index: 1;
-    grid-column: 2/3;
-    grid-row: 2/3;
-    place-self: end start;
-    --width: auto;
-    width:calc(var(--width) - 10px);
-
+  z-index: 1;
+  grid-column: 2/3;
+  grid-row: 2/3;
+  place-self: end start;
+  --width: auto;
+  width: calc(var(--width) - 10px);
 }
 
 .distanceTypography {
-    padding: 0 1em 0 1em;
-
+  padding: 0 1em 0 1em;
 }
 
 .progress {
-    width:3rem;
+  width: 3rem;
 }

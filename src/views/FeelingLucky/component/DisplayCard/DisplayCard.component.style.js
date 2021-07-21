@@ -2,10 +2,18 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
-    width: "300px",
+    width: "45vh",
     justifyContent: "center",
     flexDirection: "column",
     display: "flex",
+    borderRadius: "18px",
+  },
+  rootSmaller: {
+    width: "35vh",
+    justifyContent: "center",
+    flexDirection: "column",
+    display: "flex",
+    borderRadius: "18px",
   },
   media: {
     height: 0,
