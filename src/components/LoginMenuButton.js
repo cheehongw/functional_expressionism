@@ -74,7 +74,7 @@ export default function LoginMenuButton(props) {
       <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
-        href="./signin"
+        onClick={() => history.push("/signin")}
       >
         Login
       </Button>
