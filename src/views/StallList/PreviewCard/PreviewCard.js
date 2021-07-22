@@ -3,9 +3,10 @@ import { StylesProvider } from "@material-ui/core/styles";
 import { Rating } from '@material-ui/lab';
 import styles from './PreviewCard.module.css'
 import { useHistory } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { StatusIcons } from '../../../components/StatusIcons';
 import { LikeButton } from '../../../components/LikeButton';
+import { AuthContext } from "../../../auth/use-auth";
 
 /**
  * The preview card of a stall.
@@ -20,8 +21,53 @@ export default function PreviewCard(props) {
     stallObj,
   } = props
 
+  const { currentUser } = useContext(AuthContext);
   //import user's favourite state here
-  const [favouriteState, setFavouriteState] = useState(false);
+  const [favouriteState, setFavouriteState] = useState(localStorage.getItem(`${stallObj._id}_like`) ? true : false);
+
+  useEffect(() => {
+    if (currentUser) {
+      currentUser?.getIdToken()
+        .then(contactServer("GET", stallObj))
+        .then(res => res.json())
+        .then(res => setFavouriteState(res));
+    }
+  }, [currentUser, stallObj]);
+
+
+  const [mutex, setMutex] = useState(false);
+
+  const handleFavourite = () => {
+
+    if (!currentUser) { //not logged in
+      if (favouriteState) {
+        localStorage.removeItem(`${stallObj._id}_like`);
+        setFavouriteState(false)
+      } else {
+        localStorage.setItem(`${stallObj._id}_like`, "1");
+        setFavouriteState(true)
+      }
+    } else { //logged in
+      if (!mutex) { //calls are asynchronous for logged in users, hence mutex
+        setMutex(true);
+
+        favouriteState
+          ? currentUser?.getIdToken()
+            .then(contactServer("DELETE", stallObj))
+            .then(() => {
+              setFavouriteState(false);
+              setMutex(false)
+            })
+          : currentUser?.getIdToken()
+            .then(contactServer("POST", stallObj))
+            .then(() => {
+              setFavouriteState(true);
+              setMutex(false)
+            })
+      }
+    }
+  }
+
   const history = useHistory();
 
   return (
@@ -32,12 +78,12 @@ export default function PreviewCard(props) {
           <p className={styles.stall_title}>
             {stallObj.stallName}
           </p>
-          <p className={styles.desc}> {stallObj.desc ? stallObj.desc : `@${locationObj.locationName}`} </p>
+          <p className={styles.desc}> {stallObj.desc ? stallObj.desc : `@${locationObj?.locationName}`} </p>
         </div>
 
-        <LikeButton className={styles.heart} 
-          favouriteState={favouriteState} 
-          onClick={() => { setFavouriteState(!favouriteState) }} 
+        <LikeButton className={styles.heart}
+          favouriteState={favouriteState}
+          onClick={handleFavourite}
         />
 
         <img className={styles.img} src={stallObj.stallImage} alt={stallObj.stallName} />
@@ -79,4 +125,23 @@ const StatusItem = (props) => {
     </li>
 
   )
+}
+
+/**
+ * A factory function.
+ * 
+ * @param {String} method The HTTP method to send. Choose between GET, POST, DELETE
+ * @param {Object} stallObj The stallObject
+ * @returns A function
+ */
+function contactServer(method, stallObj) {
+  return idToken => {
+    return fetch( //http://localhost:3000, {
+      `https://functional-expressionism-api.herokuapp.com/stalls/${stallObj._id}/like`, {
+      method: method,
+      headers: {
+        'Authorization': `Bearer ${idToken}`
+      }
+    })
+  }
 }

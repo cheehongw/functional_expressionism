@@ -29,6 +29,7 @@ export default function StallList(props) {
 
   useEffect(() => {
     fetch(`https://functional-expressionism-api.herokuapp.com/locations/${LocationID}/stalls`)
+    //fetch(`http://localhost:3000/locations/${LocationID}/stalls`)
       .then(res => res.ok ? res.json() : new Error('Not OK'))
       .then(res => { 
         setStallList(res);
