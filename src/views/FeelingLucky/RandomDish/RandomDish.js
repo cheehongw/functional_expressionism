@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
+import { useMediaQuery } from "@material-ui/core";
 import DisplayButton from "../component/DisplayButton/DisplayButton";
 import DisplayCard from "../component/DisplayCard/DisplayCard";
 import useStyles from "./RandomDish.page.style";
@@ -17,6 +18,7 @@ function RandomDish() {
   const [cards, setCards] = useState([]);
   const cardRef = React.createRef();
   const [finalDecision, setFinalDecision] = useState(null);
+  const matches = useMediaQuery("(max-width: 640px)");
 
   async function fetchAPIData() {
     const response = await fetch(
@@ -64,32 +66,48 @@ function RandomDish() {
       <Header />
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
-          {finalDecision === null ? (
-            <HealthyIcon className={classes.icon} />
-          ) : finalDecision ? (
-            <HappyIcon className={classes.icon} />
+          {!matches ? (
+            finalDecision === null ? (
+              <HealthyIcon className={classes.icon} />
+            ) : finalDecision ? (
+              <HappyIcon className={classes.icon} />
+            ) : (
+              <SadIcon className={classes.icon} />
+            )
           ) : (
-            <SadIcon className={classes.icon} />
+            <></>
           )}
           <div className={classes.statusContainer}>
             {cards.length > 1 ? (
               <Typography
                 component="h1"
-                variant="h4"
+                variant="h5"
                 className={classes.status}
               >
                 Our random suggestions!
               </Typography>
             ) : finalDecision === null ? (
-              <Typography component="h1" variant="h4">
+              <Typography
+                component="h1"
+                variant="h4"
+                className={classes.status}
+              >
                 Your dish for today?
               </Typography>
             ) : finalDecision ? (
-              <Typography component="h1" variant="h4">
+              <Typography
+                component="h1"
+                variant="h4"
+                className={classes.status}
+              >
                 Bon Appétit
               </Typography>
             ) : (
-              <Typography component="h1" variant="h4">
+              <Typography
+                component="h1"
+                variant="h4"
+                className={classes.status}
+              >
                 We have no suggestion left
               </Typography>
             )}

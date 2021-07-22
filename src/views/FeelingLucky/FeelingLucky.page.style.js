@@ -43,4 +43,27 @@ export const useStyles = makeStyles((theme) => ({
     height: "8rem",
     width: "auto",
   },
+  paper: {
+    display: "flex",
+    flexWrap: "wrap",
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid",
+    borderColor: "#FF655B",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalTitle: {
+    marginTop: "10px",
+  },
+  btnContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
