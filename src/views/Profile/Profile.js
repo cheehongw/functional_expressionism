@@ -12,6 +12,7 @@ function Profile() {
   return (
     <div>
       <Header />
+      <div className={classes.title}></div>
       <div className={classes.paper}>
         <Avatar
           className={classes.avatar}

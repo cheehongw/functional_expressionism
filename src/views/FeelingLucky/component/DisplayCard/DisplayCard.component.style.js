@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme) => ({
     borderRadius: "18px",
   },
   rootSmaller: {
-    width: "35vh",
+    width: "40vh",
     justifyContent: "center",
     flexDirection: "column",
     display: "flex",
