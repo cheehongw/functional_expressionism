@@ -108,7 +108,7 @@ function RandomDish() {
                 variant="h4"
                 className={classes.status}
               >
-                We have no suggestion left, you can refresh the page to get other suggestions
+                We have no suggestion left
               </Typography>
             )}
           </div>
