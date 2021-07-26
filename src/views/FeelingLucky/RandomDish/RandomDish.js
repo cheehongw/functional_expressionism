@@ -108,7 +108,7 @@ function RandomDish() {
                 variant="h4"
                 className={classes.status}
               >
-                We have no suggestion left
+                We have no suggestion left, you can refresh the page to get other suggestions
               </Typography>
             )}
           </div>
@@ -136,7 +136,7 @@ function RandomDish() {
           ) : finalDecision ? (
             <DisplayCard dishData={cards[0]} />
           ) : (
-            <img src="NoSuggestion.png" alt="Thinking cat" />
+            <img src="https://i0.wp.com/theverybesttop10.com/wp-content/uploads/2017/12/Ten-Cats-Wondering-What-Is-for-Dinner-in-Deep-Thinking-Ways-9-600x483.jpg?resize=600%2C483" alt="Thinking cat" />
           )}
           {cards.length > 1 ? (
             <DisplayButton left={swipeLeftButton} right={swipeRightButton} />
