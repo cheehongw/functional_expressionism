@@ -25,10 +25,10 @@ export default function App() {
         <h2 className={styles.subtitle}>
           choose what to eat in <span className={styles.nus}>NUS</span>
         </h2>
-        <h2 className={styles.subtitle}>
+        <h3 className={styles.subtitle}>
           <span className={styles.text1}>pick from a listing</span> OR
           <span className={styles.tinder}> swipe like Tinder</span>
-        </h2>
+        </h3>
       </div>
 
       <div className={styles.options}>
